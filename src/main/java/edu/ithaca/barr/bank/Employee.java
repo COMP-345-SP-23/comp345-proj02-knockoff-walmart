@@ -10,4 +10,18 @@ public class Employee {
         name = nameIn;
     }
 
+
+    /*
+     * @return employee's id
+     */
+    public int getId(){
+        return id;
+    }
+
+    /*
+     * @return employee's name
+     */
+    public String getName(){
+        return name;
+    }
 }
