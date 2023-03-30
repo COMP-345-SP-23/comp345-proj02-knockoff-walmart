@@ -14,25 +14,4 @@ https://drive.google.com/file/d/1bWezdqvPzxp9l_bMWEql8H-LjvOxI9HS/view?usp=shari
 Link to Trello Board:
 https://trello.com/invite/b/Z4AZkjLr/ATTI29f276b6f63da2d5de27021ec4159ac4157DDD9E/knockoff-walmart-scrum
 
-Sprint 1 Goal:
-
-Three Use Cases that you will implement first:
-1. -
-2. - 
-3. - 
-
-Which classes & methods do you need to implement for these use cases?
-(Indicated which team member is responsible for the implemenation)
-1. -
-2. -
-3. -
-4. -
-5. << add more as needed >>
-
-Don't forget to use Test-Driven Development (TDD)
-1. Write Class and Method Function Headers
-2. Write Tests
-3. Implement Method Functions
-
-Good Luck!
-
+Sprint 1 Goal: Manager needs to be completely done first because "it is the most important person at the grocery store because they can order more inventory, not the employees."
