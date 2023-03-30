@@ -17,6 +17,45 @@ public class Product {
         id = idIn;
     }
 
+    /*
+     * @return product's name
+     */
+    public String getName(){
+        return name;
+    }
 
+    /*
+     * @return inventoryTotal of product
+     */
+    public int getInventory(){
+        return inventoryTotal;
+    }
 
+    /*
+     * @return location of product (by aisle)
+     */
+    public int getLocation(){
+        return location;
+    }
+
+    /*
+     * @return expiration date in form of a string
+     */
+    public String getDate(){
+        return date;
+    }
+
+    /*
+     * @return price of product
+     */
+    public double getPrice(){
+        return price;
+    }
+
+    /*
+     * @return product's id
+     */
+    public int getId(){
+        return id;
+    }
 }

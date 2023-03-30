@@ -3,6 +3,13 @@ package edu.ithaca.barr.bank;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @classname ProductAlertStockTest
+ * @author Arabella Fielder
+ * @methods alertLowStockOneTest(), alertLowStockTestAll()
+ * @date 03/30/23
+ */
+
 public class ProductAlertStockTest {
     
 
@@ -13,6 +20,7 @@ public class ProductAlertStockTest {
         Product product1 = new Product("Lettuce", 1, "4/5/23", .79, 3245);
         groceryStore.getProducts().add(product1);
         assertEquals(10, product1.getInventory()); //ensuring starting inventory is correct
+        assertEquals("Product is not running low on stock: 10 remaining", manager.alertLowStock(3245)); //tests for when inventory isnt running low
         product1.decreaseInventory(6);
         assertEquals(4, product1.getInventory()); //ensures lesser product inventory
         assertEquals("Product Inventory Running Low: 4 remaining", manager.alertLowStock(3245));//tests to check alert sent out that inventory is low for greatest amount possible
@@ -36,14 +44,16 @@ public class ProductAlertStockTest {
         groceryStore.getProducts().add(product2);
         groceryStore.getProducts().add(product3);
 
+        assertEquals("No products are running low on stock", manager.alertLowStock());//tests for when in a list of many none are running low on stock
+
         product1.decreaseInventory(7);
-        assertEquals("Lettuce (3245): 3 remaining", manager.alertLowStock());//tests when one of multiple products are running low
+        assertEquals(", Lettuce (3245): 3 remaining", manager.alertLowStock());//tests when one of multiple products are running low
 
         product2.decreaseInventory(10);
-        assertEquals("Lettuce (3245): 3 remaining, Carrots (3246): 0 remaining", manager.alertLowStock()); //tests when multiple of multiple products are running low
+        assertEquals(", Lettuce (3245): 3 remaining, Carrots (3246): 0 remaining", manager.alertLowStock()); //tests when multiple of multiple products are running low
 
         product3.decreaseInventory(8);
-        assertEquals("Lettuce (3245): 3 remaining, Carrots (3246): 0 remaining, Bread (1243): 2 remaining", manager.alertLowStock()); //tests when all of multiple products are running low
+        assertEquals(", Lettuce (3245): 3 remaining, Carrots (3246): 0 remaining, Bread (1243): 2 remaining", manager.alertLowStock()); //tests when all of multiple products are running low
     }
    
 }
