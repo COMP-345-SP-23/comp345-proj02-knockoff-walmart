@@ -14,4 +14,10 @@ https://drive.google.com/file/d/1bWezdqvPzxp9l_bMWEql8H-LjvOxI9HS/view?usp=shari
 Link to Trello Board:
 https://trello.com/invite/b/Z4AZkjLr/ATTI29f276b6f63da2d5de27021ec4159ac4157DDD9E/knockoff-walmart-scrum
 
-Sprint 1 Goal: Manager needs to be completely done first because "it is the most important person at the grocery store because they can order more inventory, not the employees."
+Sprint 1:
+Scrum Master: Matt
+Goal: Manager needs to be completely done first because "it is the most important person at the grocery store because they can order more inventory, not the employees."
+Class Diagram for Sprint 1:
+
+
+
