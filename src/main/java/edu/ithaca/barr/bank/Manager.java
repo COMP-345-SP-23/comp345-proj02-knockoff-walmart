@@ -1,6 +1,8 @@
 package edu.ithaca.barr.bank;
 
+import java.util.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Manager extends Employee{
     
@@ -8,8 +10,6 @@ public class Manager extends Employee{
         super(idIn, nameIn);
         
     }
-
-
     /**
      * @param productId id of product to check stock of
      * @return string clarifying if product is low on stock or not as well as how many of the product remaining if low
@@ -59,12 +59,38 @@ public class Manager extends Employee{
         }
     }
 
-
     /**
      * Allows manager to add a brand new product to the grocery store
      * @param p
      */
     public void addProduct(Product p){
+        ArrayList<Product> gs = new ArrayList<>();
+        for(Product pro : GroceryStore.getProducts()){
+            if(p == pro){
+                throw new IllegalArgumentException();
+            }
+            else if(pro.getId() == p.getId() && Objects.equals(pro.getName(), p.getName())){
+                throw new IllegalArgumentException();
+            }
+            else{
+                GroceryStore.getProducts().add(p);
+
+            }
+        }
+
+//        if(!gs.contains(p)){
+//            if(gs.stream().noneMatch(product
+//                    -> product.getId() == p.getId() || Objects.equals(product.getName(), p.getName()))){
+//                GroceryStore.getProducts().add(p);
+//            }
+//            else{
+//                throw new IllegalArgumentException();
+//
+//            }
+//        }else{
+//            throw new IllegalArgumentException();
+//        }
+
 
     }
 
