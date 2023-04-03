@@ -77,6 +77,20 @@ public class Manager extends Employee{
         
     }
 
+    /**
+     * 
+     */
+    public void alertProductExpiration(int productId){
+
+
+    }
+
+    /**
+     * 
+     */
+    public void alertProductExpiration(){
+
+    }
 
 
 }
