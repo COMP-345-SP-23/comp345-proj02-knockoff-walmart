@@ -63,32 +63,19 @@ public class Manager extends Employee{
      * @param p
      */
     public void addProduct(Product p){
-        ArrayList<Product> gs = new ArrayList<>();
-        for(Product pro : GroceryStore.getProducts()){
-            if(p == pro){
-                throw new IllegalArgumentException();
-            }
-            else if(pro.getId() == p.getId() && Objects.equals(pro.getName(), p.getName())){
-                throw new IllegalArgumentException();
+
+        if(!GroceryStore.getProducts().contains(p)){
+            if(GroceryStore.getProducts().stream().noneMatch(product
+                    -> product.getId() == p.getId() || Objects.equals(product.getName(), p.getName()))){
+                GroceryStore.getProducts().add(p);
             }
             else{
-                GroceryStore.getProducts().add(p);
+                throw new IllegalArgumentException();
 
             }
+        }else{
+            throw new IllegalArgumentException();
         }
-
-//        if(!gs.contains(p)){
-//            if(gs.stream().noneMatch(product
-//                    -> product.getId() == p.getId() || Objects.equals(product.getName(), p.getName()))){
-//                GroceryStore.getProducts().add(p);
-//            }
-//            else{
-//                throw new IllegalArgumentException();
-//
-//            }
-//        }else{
-//            throw new IllegalArgumentException();
-//        }
 
 
     }
