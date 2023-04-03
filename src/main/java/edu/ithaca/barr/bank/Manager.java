@@ -53,14 +53,6 @@ public class Manager extends Employee{
         }
     }
 
-    /**
-     * Allows manager to add a brand new product to the grocery store using props
-     * @param name, location, date, price, id
-     */
-    public void addProduct(String name, int location, String date, double price, int id){
-
-
-    }
 
     /**
      * Allows manager to add a brand new product to the grocery store
