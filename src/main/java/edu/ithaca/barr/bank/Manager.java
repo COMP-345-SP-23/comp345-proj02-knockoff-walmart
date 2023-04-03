@@ -13,8 +13,9 @@ public class Manager extends Employee{
     /**
      * @param productId id of product to check stock of
      * @return string clarifying if product is low on stock or not as well as how many of the product remaining if low
+     * @throws Exception
      */
-    public String alertLowStock(int productId){
+    public String alertLowStock(int productId) throws Exception{
         ArrayList<Product> products = GroceryStore.getProducts();
         Product alertProduct = null;
         for (Product product : products){
@@ -23,11 +24,16 @@ public class Manager extends Employee{
                 break;
             }
         }
-        if (alertProduct.getInventory() < 5){
-            return "Product Inventory Running Low: " + alertProduct.getInventory() + " remaining";
+        if (alertProduct != null){
+            if (alertProduct.getInventory() < 5){
+                return "Product Inventory Running Low: " + alertProduct.getInventory() + " remaining";
+            }
+            else{
+                return "Product is not running low on stock: " + alertProduct.getInventory() + " remaining";
+            }
         }
         else{
-            return "Product is not running low on stock: " + alertProduct.getInventory() + " remaining";
+            throw new Exception("Product is not in this store");
         }
     }
 
@@ -41,10 +47,10 @@ public class Manager extends Employee{
                 lowStock.add(product);
             }
         }
-        if (lowStock.size() >0){
-            String lowStockString = null;
+        if (lowStock.size() > 0){
+            String lowStockString = "";
             for (Product product : lowStock){
-                lowStockString = ", " + product.getName() + " (" + product.getId() + "): " + product.getInventory() + " remaining";
+                lowStockString = lowStockString + ", " + product.getName() + " (" + product.getId() + "): " + product.getInventory() + " remaining";
             }
             return lowStockString;
         }
@@ -60,6 +66,31 @@ public class Manager extends Employee{
      */
     public void addProduct(Product p){
 
+    }
+
+
+    /**
+     * allows manager to order more of a particular product
+     * @param id of product to order more of
+     * @param amountToAdd adding this particular amount to the products inventoryr
+     * @post that product's inventory count will be increased
+     * @return string either saying you made the order or that that product isnt in the system
+     */
+    public void orderMoreProduct(int id, int amountToAdd) throws Exception{
+        ArrayList<Product> products = GroceryStore.getProducts();
+        Product productToOrder = null;
+        for (Product product : products){
+            if (product.getId() == id){
+                productToOrder = product;
+                break;
+            }
+        }
+        if (productToOrder == null){
+            throw new Exception("Product does not exist in this store");
+        }
+        else{
+            productToOrder.increaseInventory(amountToAdd);
+        }
     }
 
 
