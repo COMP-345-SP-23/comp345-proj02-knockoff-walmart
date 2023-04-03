@@ -1,6 +1,7 @@
 package edu.ithaca.barr.bank;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.time.LocalDate;
 
 public class Manager extends Employee{
     
@@ -8,8 +9,6 @@ public class Manager extends Employee{
         super(idIn, nameIn);
         
     }
-
-
     /**
      * @param productId id of product to check stock of
      * @return string clarifying if product is low on stock or not as well as how many of the product remaining if low
@@ -61,11 +60,22 @@ public class Manager extends Employee{
 
     /**
      * Allows manager to add a brand new product to the grocery store
-     * @param name, location, date, price, id
+     * @param p
      */
-    public void addProduct(String name, int location, String date, double price, int id){
+    public void addProduct(Product p){
 
+        if(!GroceryStore.getProducts().contains(p)){
+            if(GroceryStore.getProducts().stream().noneMatch(product
+                    -> product.getId() == p.getId() || Objects.equals(product.getName(), p.getName()))){
+                GroceryStore.getProducts().add(p);
+            }
+            else{
+                throw new IllegalArgumentException();
 
+            }
+        }else{
+            throw new IllegalArgumentException();
+        }
 
 
     }
@@ -95,6 +105,60 @@ public class Manager extends Employee{
         }
     }
 
+    /**
+     * Alert if a product with the given ID is almost expired
+     * @param productId The ID of the product to check
+     */
+    public void alertProductExpiration(int productId) {
+        // Retrieve product information by ID (assuming you have a database or API)
+        Product product = getProductById(productId);
+        if (product == null) {
+            System.out.println("Product with ID " + productId + " not found.");
+            return;
+        }
 
+        // Check if the product is almost expired
+        LocalDate expirationDate = product.getDateAsLocalDate();
+        LocalDate today = LocalDate.now();
+        LocalDate sevenDaysFromNow = today.plusDays(7);
+        if (expirationDate.isBefore(sevenDaysFromNow) || expirationDate.isEqual(sevenDaysFromNow)) {
+            // Send an alert (e.g., email, push notification)
+            sendProductExpirationAlert(product);
+        }
+    }
 
+    /**
+     * Alert if any products are almost expired
+     */
+    public void alertProductExpiration() {
+        // Retrieve all products (assuming you have a database or API)
+        ArrayList<Product> allProducts = getAllProducts();
+
+        // Check each product and send an alert if it's almost expired
+        LocalDate today = LocalDate.now();
+        LocalDate sevenDaysFromNow = today.plusDays(7);
+        for (Product product : allProducts) {
+            LocalDate expirationDate = product.getDateAsLocalDate();
+            if (expirationDate.isBefore(sevenDaysFromNow) || expirationDate.isEqual(sevenDaysFromNow)) {
+                // Send an alert (e.g., email, push notification)
+                sendProductExpirationAlert(product);
+            }
+        }
+    }
+
+    // Helper methods for interacting with the database or sending alerts
+    private Product getProductById(int productId) {
+        // Code to retrieve product information by ID goes here
+        return null;
+    }
+
+    private ArrayList<Product> getAllProducts() {
+        // Code to retrieve all products goes here
+        return null;
+    }
+
+    private void sendProductExpirationAlert(Product product) {
+        // Code to send an alert (e.g., email, push notification) goes here
+        System.out.println("Product " + product.getName() + " is almost expired!");
+    }
 }

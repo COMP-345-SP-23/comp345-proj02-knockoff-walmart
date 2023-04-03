@@ -1,5 +1,8 @@
 package edu.ithaca.barr.bank;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Product {
     
     private String name;
@@ -57,8 +60,9 @@ public class Product {
     /*
      * @return expiration date in form of a string
      */
-    public String getDate(){
-        return date;
+    public LocalDate getDateAsLocalDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        return LocalDate.parse(date, formatter);
     }
 
     /*

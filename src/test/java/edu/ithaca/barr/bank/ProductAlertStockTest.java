@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 
 public class ProductAlertStockTest {
-    
 
     @Test
     public void alertLowStockOneTest() throws Exception{
@@ -62,11 +61,6 @@ public class ProductAlertStockTest {
 
 
 
-
-
-
-
-
     @Test
     public void orderMoreProductTest() throws Exception{
         GroceryStore groceryStore = new GroceryStore();
@@ -96,5 +90,5 @@ public class ProductAlertStockTest {
         assertEquals(11, product1.getInventory());//checks for decrementing by nothing
     }
     
-   
+
 }
