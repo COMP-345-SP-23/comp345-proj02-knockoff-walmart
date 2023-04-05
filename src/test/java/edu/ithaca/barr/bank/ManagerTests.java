@@ -34,6 +34,10 @@ public class ManagerTests {
         //throws illegal argument exception if name is already in list
         assertThrows(IllegalArgumentException.class, ()-> m.addProduct(p2));
 
+    }
+
+    @Test
+    void removeProductTest(){
 
     }
 }

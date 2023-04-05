@@ -63,7 +63,6 @@ public class Manager extends Employee{
      * @param p
      */
     public void addProduct(Product p){
-
         if(!GroceryStore.getProducts().contains(p)){
             if(GroceryStore.getProducts().stream().noneMatch(product
                     -> product.getId() == p.getId() || Objects.equals(product.getName(), p.getName()))){
@@ -76,7 +75,13 @@ public class Manager extends Employee{
         }else{
             throw new IllegalArgumentException();
         }
+    }
 
+    /**
+     * Allows manager to remove all instances of a product in the Grocery Store
+     * @param p
+     */
+    public void removeProduct(Product p){
 
     }
 
