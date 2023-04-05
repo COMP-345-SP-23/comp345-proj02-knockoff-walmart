@@ -78,4 +78,12 @@ public class Product {
     public int getId(){
         return id;
     }
+
+    /*
+     * @post changed price of chosen product
+     * @param priceIn for updated product
+     */
+    public void setPrice(double priceIn){
+        price = priceIn;
+    }
 }

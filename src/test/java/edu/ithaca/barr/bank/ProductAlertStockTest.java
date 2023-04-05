@@ -4,18 +4,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 /**
  * @classname ProductAlertStockTest
  * @author Arabella Fielder
- * @methods alertLowStockOneTest(), alertLowStockTestAll()
+ * @methods alertLowStockOneTest(), alertLowStockTestAll(), orderMoreProductTest(), incrementDecrementInventoryTest()
  * @date 03/30/23
  */
 
 public class ProductAlertStockTest {
 
     @Test
-    public void alertLowStockOneTest() throws Exception{
+    public void alertLowStockOneTest() throws NoSuchElementException{
         Manager manager = new Manager(1234, "John");
         Product product1 = new Product("Lettuce", 1, "4/5/23", .79, 3245);
         GroceryStore.getProducts().add(product1);
@@ -60,11 +61,10 @@ public class ProductAlertStockTest {
 
 
     @Test
-    public void orderMoreProductTest() throws Exception{
+    public void orderMoreProductTest() throws NoSuchElementException{
         Manager manager = new Manager(1234, "John");
         Product product1 = new Product("Lettuce", 1, "4/5/23", .79, 3245);
-        ArrayList<Product> products = GroceryStore.getProducts();
-        products.add(product1);
+        GroceryStore.getProducts().add(product1);
         assertEquals(10, product1.getInventory());//checks that starting inventory is 10
         manager.orderMoreProduct(3245, 12);//actual step of ordering more of a product
         assertEquals(22, product1.getInventory());//checks that inventory was increased by particular amount
