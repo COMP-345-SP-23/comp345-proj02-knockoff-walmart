@@ -3,6 +3,8 @@ package edu.ithaca.barr.bank;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -34,6 +36,23 @@ public class ManagerTests {
         //throws illegal argument exception if name is already in list
         assertThrows(IllegalArgumentException.class, ()-> m.addProduct(p2));
 
+    }
+
+    @Test
+    void removeProductTest(){
+        Manager m = new Manager(0, "Manny" );
+        Product p = new Product("product", 12, "03/31/2023", 10.00, 0);
+
+        m.addProduct(p);
+        // successful remove of added product
+        m.removeProduct(p);
+        assertFalse(GroceryStore.getProducts().contains(p));
+
+        // throws error when trying to remove product that's not in store after removing
+        assertThrows(NoSuchElementException.class, ()-> m.removeProduct(p));
+
+        // throws error when trying to remove product that does not exist in store
+        assertThrows(NoSuchElementException.class, ()-> m.removeProduct(new Product("product1", 13, "04/01/2023", 5.00, 1)));
 
     }
 }

@@ -69,9 +69,9 @@ public class Manager extends Employee{
     /**
      * Allows manager to add a brand new product to the grocery store
      * @param p
+     * @throws IllegalArgumentException if Product credentials currently in store
      */
     public void addProduct(Product p){
-
         if(!GroceryStore.getProducts().contains(p)){
             if(GroceryStore.getProducts().stream().noneMatch(product
                     -> product.getId() == p.getId() || Objects.equals(product.getName(), p.getName()))){
@@ -84,7 +84,19 @@ public class Manager extends Employee{
         }else{
             throw new IllegalArgumentException();
         }
+    }
 
+    /**
+     * Allows manager to remove all instances of a product in the Grocery Store
+     * @param p
+     * @throws NoSuchElementException if Product not in store
+     */
+    public void removeProduct(Product p){
+        if(GroceryStore.getProducts().contains(p)){
+            GroceryStore.getProducts().remove(p);
+        }else{
+            throw new NoSuchElementException("Product does not exist in Grocery Store!");
+        }
 
     }
 
