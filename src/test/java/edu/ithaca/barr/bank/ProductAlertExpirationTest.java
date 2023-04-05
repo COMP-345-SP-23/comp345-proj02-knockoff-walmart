@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
          String date = LocalDate.now().plusDays(3).format(formatter);
          Product product = new Product("Test Product", 1, date, 10.0, 1);
          boolean[] alertSent = {false};
+         assertTrue(alertSent[0] = true);
          manager.setAlertHandler((p) -> alertSent[0] = true);
  
          // Act

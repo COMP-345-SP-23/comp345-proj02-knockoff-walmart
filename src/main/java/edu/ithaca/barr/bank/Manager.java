@@ -121,17 +121,23 @@ public class Manager extends Employee{
 
     // Helper methods for interacting with the database or sending alerts
     private Product getProductById(int productId) {
+        ArrayList<Product> products = GroceryStore.getProducts();
         // Code to retrieve product information by ID goes here
-        return null;
+        for (Product product : products){
+            if (product.getId() == productId){
+                Product alertProduct = product;
+                break;
+            }
+        }
     }
 
     private ArrayList<Product> getAllProducts() {
-        // Code to retrieve all products goes here
-        return null;
+        ArrayList<Product> products = GroceryStore.getProducts();
+        return products;
     }
 
     private void sendProductExpirationAlert(Product product) {
-        // Code to send an alert (e.g., email, push notification) goes here
+        // Code to send an alert
         System.out.println("Product " + product.getName() + " is almost expired!");
     }
 }
