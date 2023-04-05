@@ -21,6 +21,22 @@ public class Product {
     }
 
     /*
+     * @post increments the product's inventory
+     * @param incrementValue value to increase inventory by
+     */
+    public void increaseInventory(int incrementValue){
+        inventoryTotal += incrementValue;
+    }
+
+    /*
+     * @post decrements the product's inventory
+     * @param decrementValue value to decrease inventory by
+     */
+    public void decreaseInventory(int decrementValue){
+        inventoryTotal = inventoryTotal - decrementValue;
+    }
+
+    /*
      * @return product's name
      */
     public String getName(){
@@ -61,5 +77,13 @@ public class Product {
      */
     public int getId(){
         return id;
+    }
+
+    /*
+     * @post changed price of chosen product
+     * @param priceIn for updated product
+     */
+    public void setPrice(double priceIn){
+        price = priceIn;
     }
 }

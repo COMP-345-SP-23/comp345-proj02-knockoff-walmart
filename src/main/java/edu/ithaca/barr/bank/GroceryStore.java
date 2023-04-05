@@ -2,17 +2,11 @@ package edu.ithaca.barr.bank;
 
 import java.util.ArrayList;
 
-public abstract class GroceryStore {
+public class GroceryStore {
     
-    private static ArrayList<Employee> employees;
-    private static ArrayList<Product> products;
-    private static double totalSales;
-
-    public GroceryStore(){
-        employees = new ArrayList<Employee>();
-        products = new ArrayList<Product>();
-        totalSales = 0;
-    }
+    private static ArrayList<Employee> employees = new ArrayList<Employee>();
+    private static ArrayList<Product> products = new ArrayList<Product>();
+    private static double totalSales = 0;
 
     /*
      * @return list of employees
