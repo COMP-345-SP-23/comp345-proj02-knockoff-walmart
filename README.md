@@ -19,5 +19,6 @@ Scrum Master: Matt
 Goal: Manager needs to be completely done first because "it is the most important person at the grocery store because they can order more inventory, not the employees."
 Class Diagram for Sprint 1:
 
-
+Link to Sprint Review
+https://docs.google.com/document/d/1lRVuslyR1rqVjNHhPbQODkp8faoJwKZVt9pbBlBDWCc/edit
 
