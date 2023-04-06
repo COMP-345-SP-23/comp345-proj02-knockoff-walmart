@@ -3,6 +3,14 @@ package edu.ithaca.barr.bank;
 import java.util.*;
 import java.time.LocalDate;
 
+
+/**
+ * @classname Manager
+ * @author Arabella Fielder, Liz Richards, Matt Weil
+ * @methods AF: alertLowStock, alertLowStock, orderMoreProduct - LR: addProduct - MW: alertProductExpiration, alertProductExpiration, helper methods
+ * @date 04/03/23
+ */
+
 public class Manager extends Employee{
     
     public Manager(int idIn, String nameIn){
@@ -12,9 +20,9 @@ public class Manager extends Employee{
     /**
      * @param productId id of product to check stock of
      * @return string clarifying if product is low on stock or not as well as how many of the product remaining if low
-     * @throws Exception
+     * @throws NoSuchElementException
      */
-    public String alertLowStock(int productId) throws Exception{
+    public String alertLowStock(int productId) throws NoSuchElementException{
         ArrayList<Product> products = GroceryStore.getProducts();
         Product alertProduct = null;
         for (Product product : products){
@@ -32,7 +40,7 @@ public class Manager extends Employee{
             }
         }
         else{
-            throw new Exception("Product is not in this store");
+            throw new NoSuchElementException("Product is not in this store");
         }
     }
 
@@ -99,8 +107,9 @@ public class Manager extends Employee{
      * @param amountToAdd adding this particular amount to the products inventoryr
      * @post that product's inventory count will be increased
      * @return string either saying you made the order or that that product isnt in the system
+     * @throws NoSuchElementException
      */
-    public void orderMoreProduct(int id, int amountToAdd) throws Exception{
+    public void orderMoreProduct(int id, int amountToAdd) throws NoSuchElementException{
         ArrayList<Product> products = GroceryStore.getProducts();
         Product productToOrder = null;
         for (Product product : products){
@@ -110,7 +119,7 @@ public class Manager extends Employee{
             }
         }
         if (productToOrder == null){
-            throw new Exception("Product does not exist in this store");
+            throw new NoSuchElementException("Product does not exist in this store");
         }
         else{
             productToOrder.increaseInventory(amountToAdd);
@@ -121,12 +130,11 @@ public class Manager extends Employee{
      * Alert if a product with the given ID is almost expired
      * @param productId The ID of the product to check
      */
-    public void alertProductExpiration(int productId) {
-        // Retrieve product information by ID (assuming you have a database or API)
+    public String alertProductExpiration(int productId) {
+        // Retrieve product information by ID
         Product product = getProductById(productId);
         if (product == null) {
-            System.out.println("Product with ID " + productId + " not found.");
-            return;
+            return "Product with ID " + productId + " not found.";
         }
 
         // Check if the product is almost expired
@@ -134,8 +142,9 @@ public class Manager extends Employee{
         LocalDate today = LocalDate.now();
         LocalDate sevenDaysFromNow = today.plusDays(7);
         if (expirationDate.isBefore(sevenDaysFromNow) || expirationDate.isEqual(sevenDaysFromNow)) {
-            // Send an alert (e.g., email, push notification)
-            sendProductExpirationAlert(product);
+            return "Product " + product.getName() + " is almost expired!";
+        }else{
+            return "No products near expiration date";
         }
     }
 
@@ -144,7 +153,7 @@ public class Manager extends Employee{
      */
     public void alertProductExpiration() {
         // Retrieve all products (assuming you have a database or API)
-        ArrayList<Product> allProducts = getAllProducts();
+        ArrayList<Product> allProducts = GroceryStore.getProducts();
 
         // Check each product and send an alert if it's almost expired
         LocalDate today = LocalDate.now();
@@ -152,25 +161,20 @@ public class Manager extends Employee{
         for (Product product : allProducts) {
             LocalDate expirationDate = product.getDateAsLocalDate();
             if (expirationDate.isBefore(sevenDaysFromNow) || expirationDate.isEqual(sevenDaysFromNow)) {
-                // Send an alert (e.g., email, push notification)
-                sendProductExpirationAlert(product);
+                System.out.println("Product " + product.getName() + " is almost expired!");
             }
         }
     }
 
     // Helper methods for interacting with the database or sending alerts
-    private Product getProductById(int productId) {
-        // Code to retrieve product information by ID goes here
+    static Product getProductById(int productId) {
+        ArrayList<Product> products = GroceryStore.getProducts();
+        // Code to retrieve product information by ID
+        for (Product product : products){
+            if (product.getId() == productId){
+                return product; // Return the product if found
+            }
+        }
         return null;
-    }
-
-    private ArrayList<Product> getAllProducts() {
-        // Code to retrieve all products goes here
-        return null;
-    }
-
-    private void sendProductExpirationAlert(Product product) {
-        // Code to send an alert (e.g., email, push notification) goes here
-        System.out.println("Product " + product.getName() + " is almost expired!");
     }
 }
