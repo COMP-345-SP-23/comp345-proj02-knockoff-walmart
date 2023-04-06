@@ -2,6 +2,14 @@ package edu.ithaca.barr.bank;
 
 public class Employee {
     
+/**
+ * @classname Employee
+ * @author Arabella Fielder
+ * @methods AF: constructor, getters
+ * @date 04/03/23
+ */
+    
+
     private int id;
     private String name;
 
