@@ -3,6 +3,13 @@ package edu.ithaca.barr.bank;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @classname Product
+ * @author Arabella Fielder
+ * @methods AF: increaseInventory, decreaseInventory - MW: getDateAsLocalDate
+ * @date 04/03/23
+ */
+
 public class Product {
     
     private String name;

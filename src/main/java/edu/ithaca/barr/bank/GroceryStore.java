@@ -2,6 +2,14 @@ package edu.ithaca.barr.bank;
 
 import java.util.ArrayList;
 
+/**
+ * @classname GrocerYStore
+ * @author Arabella Fielder
+ * @methods AF: getters
+ * @date 04/03/23
+ */
+
+
 public class GroceryStore {
     
     private static ArrayList<Employee> employees = new ArrayList<Employee>();
