@@ -1,94 +1,89 @@
 package edu.ithaca.barr.bank;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
+ * This class tests the functionality of the ProductAlertExpiration class.
  * @classname ProductAlertExpirationTest
  * @author Matthew Weil
- * @methods 
+ * @methods testGetProductById() testGetProductByIdNotFound() testAlertProductExpirationMultipleProducts() testAlertProductExpirationNotAlmostExpired() testAlertProductExpirationAlmostExpired()
  * @date 03/31/2023
  */
 
- import java.time.LocalDate;
- import java.time.format.DateTimeFormatter;
- import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
  
- import org.junit.jupiter.api.Test;
- import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
  
- public class ProductAlertExpirationTest {
- 
-     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
- 
-     @Test
-     void testAlertProductExpiration() {
-         // Arrange
-         Manager manager = new Manager(1, "John Doe");
-         String date = LocalDate.now().plusDays(3).format(formatter);
-         Product product = new Product("Test Product", 1, date, 10.0, 1);
-         boolean[] alertSent = {false};
-         assertTrue(alertSent[0] = true);
-         manager.setAlertHandler((p) -> alertSent[0] = true);
- 
-         // Act
-         manager.alertProductExpiration(1);
- 
-         // Assert
-         assertTrue(alertSent[0], "Expected an alert to be sent for the almost expired product.");
-     }
- 
-     @Test
-     void testAlertProductExpirationNoAlert() {
-         // Arrange
-         Manager manager = new Manager(1, "John Doe");
-         String date = LocalDate.now().plusDays(8).format(formatter);
-         Product product = new Product("Test Product", 1, date, 10.0, 1);
-         boolean[] alertSent = {false};
-         manager.setAlertHandler((p) -> alertSent[0] = true);
- 
-         // Act
-         manager.alertProductExpiration(1);
- 
-         // Assert
-         assertFalse(alertSent[0], "Expected no alert to be sent for the product that is not almost expired.");
-     }
- 
-     @Test
-     void testAlertProductExpirationMultipleProducts() {
-         // Arrange
-         Manager manager = new Manager(1, "John Doe");
-         String date1 = LocalDate.now().plusDays(3).format(formatter);
-         String date2 = LocalDate.now().plusDays(5).format(formatter);
-         String date3 = LocalDate.now().plusDays(9).format(formatter);
-         Product product1 = new Product("Test Product 1", 1, date1, 10.0, 1);
-         Product product2 = new Product("Test Product 2", 2, date2, 20.0, 2);
-         Product product3 = new Product("Test Product 3", 3, date3, 30.0, 3);
-         ArrayList<Product> allProducts = new ArrayList<Product>();
-         allProducts.add(product1);
-         allProducts.add(product2);
-         allProducts.add(product3);
-         boolean[] alertSent = {false, false, false};
-         manager.setAlertHandler((p) -> {
-             if (p.equals(product1)) {
-                 alertSent[0] = true;
-             } else if (p.equals(product2)) {
-                 alertSent[1] = true;
-             } else if (p.equals(product3)) {
-                 alertSent[2] = true;
-             }
-         });
- 
-         // Act
-         manager.alertProductExpiration();
- 
-         // Assert
-         assertTrue(alertSent[0], "Expected an alert to be sent for the almost expired product 1.");
-         assertTrue(alertSent[1], "Expected an alert to be sent for the almost expired product 2.");
-         assertFalse(alertSent[2], "Expected no alert to be sent for the product that is not almost expired.");
-     }
- }
- 
+public class ProductAlertExpirationTest {
 
+    /**
+     * Tests the getProductById() method to ensure it returns the correct product based on ID.
+     */
+    @Test
+    public void testGetProductById() {
+        Product product1 = new Product("Lettuce", 1, "04/05/20233", .79, 3245);
+        GroceryStore.getProducts().add(product1);
+
+        // Test with an existing product ID
+        Product product = Manager.getProductById(3245);
+        assertNotNull(product);
+        assertEquals("Lettuce", product.getName());
+    
+        // Test with a non-existent product ID
+        product = Manager.getProductById(100);
+        assertNull(product);
+    }
+
+    /**
+    * Tests the getProductById() method when the product ID is not found in the GroceryStore.
+    */
+    @Test
+    public void testGetProductByIdNotFound() {
+        Product product1 = new Product("Milk", 1, "04/05/2023", .79, 3245);
+        GroceryStore.getProducts().add(product1);
+        Product notFound = Manager.getProductById(4);
+        assertNull(notFound);
+    } 
+
+    /**
+    * Tests the alertProductExpiration() method when there are multiple products with different expiration dates.
+    */
+    @Test
+    public void testAlertProductExpirationMultipleProducts() {
+        Product product1 = new Product("Milk", 1, "04/05/2023", .79, 3245);
+        Product product2 = new Product("Eggs", 2, "04/10/2023", 1.99, 3246);
+        Product product3 = new Product("Bread", 3, "04/25/2023", 2.49, 3247);
+        GroceryStore.getProducts().add(product1);
+        GroceryStore.getProducts().add(product2);
+        GroceryStore.getProducts().add(product3);
+        Manager manager = new Manager(1234, "John");
+        manager.alertProductExpiration();
+    }
+
+    /**
+    * Tests the alertProductExpiration() method when the product expiration date is not within 7 days of the current date.
+    */
+    @Test
+    public void testAlertProductExpirationNotAlmostExpired() {
+        Product product1 = new Product("Lettuce", 1, "07/05/2023", .79, 3245);
+        GroceryStore.getProducts().add(product1);
+        Manager manager = new Manager(1234, "John");
         
+        String alertMessage = manager.alertProductExpiration(3245);
+        assertTrue(alertMessage.equals("No products near expiration date"));
+    }
 
+    /**
+    * Tests the alertProductExpiration() method when the product expiration date is within 7 days of the current date.
+    */
+    @Test
+    public void testAlertProductExpirationAlmostExpired() {
+        Product product1 = new Product("Lettuce", 1, "04/07/2023", .79, 3245); //NEED TO CHANGE TO A DATE WITHIN 7 DAY OF CURRENT DATE TO SEE TEST
+        GroceryStore.getProducts().add(product1);
+        Manager manager = new Manager(1234, "John");
+
+        String alertMessage = manager.alertProductExpiration(3245);
+        assertTrue(alertMessage.equals("Product " + product1.getName() + " is almost expired!"));
+    }
+}
