@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * @classname Manager
  * @author Arabella Fielder, Liz Richards, Matt Weil
  * @methods AF: alertLowStock, alertLowStock, orderMoreProduct - LR: addProduct - MW: alertProductExpiration, alertProductExpiration, helper methods
- * @date 04/03/23
+ * @date 04/06/23
  */
 
 public class Manager extends Employee{
@@ -19,10 +19,11 @@ public class Manager extends Employee{
     }
     /**
      * @param productId id of product to check stock of
+     * @param lowStockCompare stock value to check when product stock is below
      * @return string clarifying if product is low on stock or not as well as how many of the product remaining if low
      * @throws NoSuchElementException
      */
-    public String alertLowStock(int productId) throws NoSuchElementException{
+    public String alertLowStock(int productId, int lowStockCompare) throws NoSuchElementException{
         ArrayList<Product> products = GroceryStore.getProducts();
         Product alertProduct = null;
         for (Product product : products){
@@ -32,11 +33,11 @@ public class Manager extends Employee{
             }
         }
         if (alertProduct != null){
-            if (alertProduct.getInventory() < 5){
-                return "Product Inventory Running Low: " + alertProduct.getInventory() + " remaining";
+            if (alertProduct.getInventory() < lowStockCompare){
+                return "Product " + alertProduct.getId() + " in aisle " + alertProduct.getLocation() + ": Inventory Running Low: " + alertProduct.getInventory() + " remaining";
             }
             else{
-                return "Product is not running low on stock: " + alertProduct.getInventory() + " remaining";
+                return "Product " + alertProduct.getId() + " is not running low on stock: " + alertProduct.getInventory() + " remaining";
             }
         }
         else{
@@ -45,19 +46,20 @@ public class Manager extends Employee{
     }
 
     /**
+     * @param lowStockCompare stock value to check when product stock is below
      * @return string of all products running low on stock as well as how many of the product remaining if low
      */
-    public String alertLowStock(){
+    public String alertLowStock(int lowStockCompare){
         ArrayList<Product> lowStock = new ArrayList<Product>();
         for (Product product : GroceryStore.getProducts()){
-            if (product.getInventory() < 5){
+            if (product.getInventory() < lowStockCompare){
                 lowStock.add(product);
             }
         }
         if (lowStock.size() > 0){
             String lowStockString = "";
             for (Product product : lowStock){
-                lowStockString = lowStockString + ", " + product.getName() + " (" + product.getId() + "): " + product.getInventory() + " remaining";
+                lowStockString = lowStockString + ", " + product.getName() + " (" + product.getId() + ") in aisle " + product.getLocation() + ": " + product.getInventory() + " remaining";
             }
             return lowStockString;
         }
