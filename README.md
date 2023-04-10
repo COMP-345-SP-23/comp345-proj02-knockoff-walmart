@@ -25,5 +25,8 @@ https://docs.google.com/document/d/1lRVuslyR1rqVjNHhPbQODkp8faoJwKZVt9pbBlBDWCc/
 Sprint 1 Retrospective:
 https://docs.google.com/document/d/1c7rna4y-GRZE_lUWRwxaJnrtk0k_9hL3o1mP-I6n2jM/edit
 
+Sprint 2:
 
+Same link that does to copy of Class Diagram:
+https://drive.google.com/file/d/1bWezdqvPzxp9l_bMWEql8H-LjvOxI9HS/view?usp=sharing
 
