@@ -5,9 +5,13 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class ManagerUI extends GroceryStoreUI{
-    List<Integer> options = List.of(0, 1, 2, 3, 4, 5);
+    List<Integer> options = List.of(0, 1, 2, 3, 4, 5, 6);
     public static Scanner scanner = new Scanner(System.in);
     private static  Manager manager;
+
+    // change aisle to A#, W#, String
+    // W stands for Wall
+    // Add options for special product type (Dairy, Meat, Frozen, Produce, Organic, Other) to team
 
 
     public ManagerUI(){
@@ -27,21 +31,11 @@ public class ManagerUI extends GroceryStoreUI{
 
         System.out.println(manager.alertLowStock());
 
-//        System.out.println("Temporary Manager available.\nId: 0\tUsername: manager");
+        System.out.println("Temporary Manager available.\nId: 0\tUsername: manager");
 
-//        int ans;
-//        System.out.println("[1] Login\n[2] Register");
-//        ans = Integer.parseInt(s.next());
-//        while(ans != 1 && ans!= 2){
-//            System.out.println("Invalid response.");
-//            ans = Integer.parseInt(s.next());
-//
-//        }
-//        switch(ans){
-//            case 1 -> manager = login();
-//            case 2 -> manager = register();
-//
-//        }
+        AuthSession as = new AuthSession("manager");
+
+
         options();
 
 
@@ -55,8 +49,10 @@ public class ManagerUI extends GroceryStoreUI{
                 [3] Order More of a Product to the Store
                 [4] Inventory on a Product\s
                 [5] Expiration Date of a Product
-                Enter '0' to end session.""");
+                [6] View Store Inventory
+                Enter 0 to end session.""");
 
+        System.out.println("Please enter number associated with choice.");
         int opt;
         System.out.print("Enter response:");
         opt = Integer.parseInt(scanner.next());
@@ -72,6 +68,10 @@ public class ManagerUI extends GroceryStoreUI{
             case 3 -> orderMoreProduct();
             case 4 -> productLowStock();
             case 5 -> productExpirationDate();
+            case 6 -> {
+                storeInventory();
+                options();
+            }
         }
     }
 
@@ -146,10 +146,6 @@ public class ManagerUI extends GroceryStoreUI{
 
 
     }
-
-
-
-
     public void orderMoreProduct(){
         int id, amount;
         System.out.println("\nOrder more of a particular Product!");
@@ -165,7 +161,6 @@ public class ManagerUI extends GroceryStoreUI{
         options();
 
     }
-
     public void productLowStock(){
         int id;
         System.out.println("\nDetermine if a Product is running low on stock!");
@@ -191,83 +186,14 @@ public class ManagerUI extends GroceryStoreUI{
 
         options();
 
-
-
     }
 
 
     public void storeInventory(){
-        System.out.println("Id\tProduct Name");
-        GroceryStore.getProducts().forEach(p ->  System.out.println(p.getId() + "\t" + p.getName()));
-
-
-    }
-
-    public static boolean auth(Employee e){
-        return GroceryStore.getEmployees().stream().anyMatch(employee ->
-                employee.getId() == e.getId() || Objects.equals(employee.getName(), e.getName()));
+        System.out.println("Id\tQty\tProduct Name\tLocation\tPrice");
+        GroceryStore.getProducts().forEach(p ->  System.out.println(p.getId() + "\t" + p.getInventory() +
+                "\t" + p.getName()));
 
     }
-
-    public Manager login(){
-        Scanner scans = new Scanner(System.in);
-        int i;
-        String use;
-        System.out.print("Id:");
-        i = scans.nextInt();
-        System.out.print("Username:");
-        use = scans.next();
-        Manager e = new Manager(i, use);
-
-        // add registration part
-        while(!auth(e)){
-            System.out.println("Error! User not in system!");
-            System.out.print("Id:");
-            i = scans.nextInt();
-            System.out.print("Username:");
-            use = scans.next();
-            e = new Manager(i, use);
-        }
-        scans.close();
-        System.out.println();
-        return e;
-
-    }
-
-    public Manager register(){
-
-        int id;
-        String name;
-        Scanner s = new Scanner(System.in);
-
-        // ask between Manager & Employee
-        System.out.print("Enter id: ");
-        id = s.nextInt();
-
-        System.out.print("Enter username: ");
-        name = s.next();
-        Manager e = new Manager(id, name);
-
-        while(auth(e)){
-            System.out.println("Error! Credentials in system. Please use a different id and username");
-            System.out.print("Enter id: ");
-            id = s.nextInt();
-            System.out.print("Enter username: ");
-            name = s.next();
-            e = new Manager(id, name);
-
-        }
-        GroceryStore.getEmployees().add(e);
-        System.out.println();
-
-        s.close();
-        return e;
-
-    }
-
-
-
-
-
 
 }
