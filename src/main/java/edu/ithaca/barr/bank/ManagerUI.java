@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class ManagerUI extends GroceryStoreUI{
-    List<Integer> options = List.of(0, 1, 2, 3, 4, 5, 6);
+    List<Integer> options = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8);
     public static Scanner scanner = new Scanner(System.in);
     private static  Manager manager;
 
@@ -16,28 +16,18 @@ public class ManagerUI extends GroceryStoreUI{
 
     public ManagerUI(){
         // starter things
-        GroceryStore.getProducts().add(new Product("Apples", 12, "04/05/2023", 1.14, 0));
-        GroceryStore.getProducts().add(new Product("Bananas", 12, "04/05/2023", .66, 1));
-        GroceryStore.getProducts().add(new Product("Oranges", 12, "04/05/2023", 1.00, 2));
-        GroceryStore.getProducts().add(new Product("Grapes", 12, "04/05/2023", 1.24, 3));
-        GroceryStore.getProducts().add(new Product("Blueberries", 12, "04/05/2023", 2.99, 4));
-
         manager= new Manager(0, "manager");
 
         GroceryStore.getEmployees().add(manager);
 
-        Scanner s = new Scanner(System.in);
         System.out.println("Manager interface");
-
-        System.out.println(manager.alertLowStock());
-
         System.out.println("Temporary Manager available.\nId: 0\tUsername: manager");
 
-        AuthSession as = new AuthSession("manager");
+        new AuthSession("manager");
 
+        manager.alertProductExpiration();
 
         options();
-
 
     }
 
@@ -47,9 +37,11 @@ public class ManagerUI extends GroceryStoreUI{
                 [1] Add New Product to Grocery Store
                 [2] Remove a Product from the Grocery Store
                 [3] Order More of a Product to the Store
-                [4] Inventory on a Product\s
-                [5] Expiration Date of a Product
-                [6] View Store Inventory
+                [4] Get Product Info\s
+                [5] Stock of a Product
+                [6] Expiration Date of a Product
+                [7] List items low on stock
+                [8] View Store Inventory
                 Enter 0 to end session.""");
 
         System.out.println("Please enter number associated with choice.");
@@ -66,18 +58,39 @@ public class ManagerUI extends GroceryStoreUI{
             case 1 -> addProduct();
             case 2 -> removeProduct();
             case 3 -> orderMoreProduct();
-            case 4 -> productLowStock();
-            case 5 -> productExpirationDate();
-            case 6 -> {
+            case 4 -> itemInfo();
+            case 5 -> productLowStock();
+            case 6 -> productExpirationDate();
+            case 7 -> alertLowStock();
+            case 8 -> {
                 storeInventory();
                 options();
             }
         }
+        System.out.println("Thank you for using Grocery Store!");
+    }
+
+    public void alertLowStock(){
+        int threshold;
+        System.out.print("\nPlease enter the minimum value for low stock:");
+        threshold = Integer.parseInt(scanner.next());
+
+
+        threshold = Integer.parseInt(scanner.next());
+        if(!(threshold >= 30 && threshold <= 180)){
+            System.err.println("Error! Please enter a value between 30 and 180.");
+            System.out.print("Desired threshold:");
+            threshold = Integer.parseInt(scanner.next());
+        }
+
+        manager.alertLowStock(threshold);
+
+
     }
 
     public void addProduct(){
-        String name, date;
-        int location, id;
+        String name, date, location;
+        int id;
         double price;
         System.out.println("\nAdd a Brand New Product to the Grocery Store!");
 
@@ -85,7 +98,7 @@ public class ManagerUI extends GroceryStoreUI{
         System.out.print("Enter Product Name: ");
         name = scanner.next();
         System.out.print("Enter Product Location: ");
-        location = Integer.parseInt(scanner.next());
+        location = (scanner.next());
         System.out.print("Enter Product Expiration Date (MM/DD/YYYY): ");
         date = scanner.next();
         System.out.print("Enter Product Price: ");
@@ -101,7 +114,7 @@ public class ManagerUI extends GroceryStoreUI{
             System.out.print("Enter Product Name: ");
             name = scanner.next();
             System.out.print("Enter Product Location: ");
-            location = Integer.parseInt(scanner.next());
+            location = (scanner.next());
             System.out.print("Enter Product Expiration Date (MM/DD/YYYY): ");
             date = scanner.next();
             System.out.print("Enter Product Price: ");
@@ -116,7 +129,6 @@ public class ManagerUI extends GroceryStoreUI{
 
 
         options();
-
 
     }
 
@@ -174,6 +186,7 @@ public class ManagerUI extends GroceryStoreUI{
 
     }
 
+    // TODO: update Employee to include productExpirationDate
     public void productExpirationDate(){
         int id;
         System.out.println("\nDetermine if a Product is nearing their expiration date!");
@@ -184,16 +197,10 @@ public class ManagerUI extends GroceryStoreUI{
         id = Integer.parseInt(scanner.next());
         System.out.println(manager.alertProductExpiration(id));
 
-        options();
 
     }
 
 
-    public void storeInventory(){
-        System.out.println("Id\tQty\tProduct Name\tLocation\tPrice");
-        GroceryStore.getProducts().forEach(p ->  System.out.println(p.getId() + "\t" + p.getInventory() +
-                "\t" + p.getName()));
 
-    }
 
 }
