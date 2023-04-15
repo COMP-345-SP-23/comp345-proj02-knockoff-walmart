@@ -2,6 +2,8 @@ package edu.ithaca.barr.bank;
 
 import java.util.ArrayList;
 
+import javax.naming.InsufficientResourcesException;
+
 public class Customer {
     
 
@@ -48,25 +50,39 @@ public void checkout(){
  * @throws IllegalArgumentException if card pin invalid
  * must verify pin first
  */
-public void checkout(int cardPin){
+public void checkout(int cardPinEntered){
+    if (cardPinEntered != cardPin){
+        throw new IllegalArgumentException("Invalid Pin");
+    }
+    else{
 
+    }
 }
 
 /*
  * checks that their card and pin are valid 
  * @throws IllegalArgumentException if card pin invalid
  * @param cardPin pin to verify card use
+ * @return true when valid card pin
  */
-public void makePayment(int cardPin){
-
+public boolean makePayment(int cardPinEntered) throws IllegalArgumentException{
+    if (cardPinEntered != cardPin){
+        throw new IllegalArgumentException("Invalid Pin");
+    }
+    return true;
 }
 
 /*
  * checks that customer has enough money
+ * @param toPay amount to pay for groceries
  * @throws InsufficientResourcesException if not enough cash on hand
  */
-public void makePayment(){
-
+public boolean makePayment(double toPay){
+    if (cashOnHand - toPay >= 0){
+        cashOnHand = cashOnHand - toPay;
+        return true;
+    }
+    return false;
 }
 
 
@@ -120,8 +136,11 @@ public void addToCart(String itemName){
  * @post decrease product inventory
  * @param product that will be added to the transaction
  */
-public double addToTransaction(Product product){
-    return -1;
+public void addToTransaction(Product product){
+        checkoutReceipt = checkoutReceipt + "\n" + product.getName() + ": " + product.getPrice();
+        product.decreaseInventory(1);
+        checkoutTotal += product.getPrice();
+        putBackItem(product.getName());
 }
 
 /*

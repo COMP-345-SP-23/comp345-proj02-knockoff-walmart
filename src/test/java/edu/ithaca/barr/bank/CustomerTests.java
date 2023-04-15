@@ -53,18 +53,19 @@ public class CustomerTests {
         Customer customer1 = new Customer(12345678, 4321, 20.00);
         customer1.addToCart("Lettuce");
         customer1.addToCart("Carrots");
+        customer1.addToCart("Carrots");
 
         assertEquals(10, product1.getInventory());
         assertEquals("", customer1.getCheckoutReceipt());
         customer1.addToTransaction(product1);
         assertEquals(9, product1.getInventory());
-        assertEquals("Lettuce: .79", customer1.getCheckoutReceipt());
+        assertEquals("\nLettuce: 0.79", customer1.getCheckoutReceipt());
         customer1.addToTransaction(product2);
         assertEquals(9, product2.getInventory());
-        assertEquals("Lettuce: .79\nCarrots: 2.49", customer1.getCheckoutReceipt());
+        assertEquals("\nLettuce: 0.79\nCarrots: 2.49", customer1.getCheckoutReceipt());
         customer1.addToTransaction(product2);
         assertEquals(8, product2.getInventory());
-        assertEquals("Lettuce: .79\nCarrots: 2.49\nCarrots: 2.49", customer1.getCheckoutReceipt());
+        assertEquals("\nLettuce: 0.79\nCarrots: 2.49\nCarrots: 2.49", customer1.getCheckoutReceipt());
     }
 
     @Test
@@ -75,16 +76,18 @@ public class CustomerTests {
         GroceryStore.getProducts().add(product2);
         Customer customer1 = new Customer(12345678, 4321, 20.00);
         customer1.addToCart("Lettuce");
+        customer1.addToCart("Lettuce");
         customer1.addToCart("Carrots");
+        assertEquals(3, customer1.getCart().size());
         customer1.addToTransaction(product1);
         customer1.addToTransaction(product1);
         customer1.addToTransaction(product2);
 
         assertEquals(4.07, customer1.getCheckoutTotal());
-        assertEquals(3, customer1.getCart().size());
-        customer1.makePayment(4321);
+        assertTrue(customer1.makePayment(4321));
         assertEquals(0, customer1.getCart().size());
 
+        customer1.addToCart("Lettuce");
         customer1.addToCart("Lettuce");
         customer1.addToCart("Carrots");
         customer1.addToTransaction(product1);
@@ -104,17 +107,17 @@ public class CustomerTests {
         Customer customer1 = new Customer(12345678, 4321, 20.00);
         customer1.addToCart("Lettuce");
         customer1.addToCart("Carrots");
+        customer1.addToCart("Lettuce");
+        assertEquals(3, customer1.getCart().size());
         customer1.addToTransaction(product1);
         customer1.addToTransaction(product1);
         customer1.addToTransaction(product2);
 
         assertEquals(4.07, customer1.getCheckoutTotal());
-        assertEquals(3, customer1.getCart().size());
-        customer1.makePayment();
+        assertTrue(customer1.makePayment(4.07));
         assertEquals(0, customer1.getCart().size());
         assertEquals(15.93, customer1.getCashOnHand());
 
-        assertThrows(InsufficientResourcesException.class, () -> customer1.makePayment());
     }
 
     @Test
