@@ -76,7 +76,19 @@ public void makePayment(){
  * @throws exception when item isn't already in cart
  */
 public void putBackItem(String itemName){
-
+    Product productToRemove = null;
+    for (Product product : cart){
+        if (product.getName() == itemName){
+            productToRemove = product;
+            break;
+        }
+    }
+    if (productToRemove != null){
+        cart.remove(productToRemove);
+    }
+    else{
+        throw new IllegalArgumentException("Product is not in your cart");
+    }
 }
 
 
