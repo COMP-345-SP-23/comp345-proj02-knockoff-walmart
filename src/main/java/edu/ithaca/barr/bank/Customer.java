@@ -86,7 +86,20 @@ public void putBackItem(String itemName){
  * @throws exception when item isnt even in the store
  */
 public void addToCart(String itemName){
-
+    ArrayList<Product> products = GroceryStore.getProducts();
+    Product productToAdd = null;
+    for (Product product : products){
+        if (product.getName() == itemName){
+            productToAdd = product;
+            break;
+        }
+    }
+    if (productToAdd != null){
+        cart.add(productToAdd);
+    }
+    else{
+        throw new IllegalArgumentException("Product is not in this store");
+    }
 }
 
 /*
