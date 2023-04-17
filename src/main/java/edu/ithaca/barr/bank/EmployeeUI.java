@@ -3,10 +3,15 @@ package edu.ithaca.barr.bank;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Employee UI
+ * @author Liz Richards
+ * @methods options, findProduct
+ */
+
 
 public class EmployeeUI extends GroceryStoreUI{
     List<Integer> options = List.of(0, 1, 2, 3, 4);
-
     private static final Scanner scanner = new Scanner(System.in);
     private static final Employee employee = new Employee(1, "employee");
 

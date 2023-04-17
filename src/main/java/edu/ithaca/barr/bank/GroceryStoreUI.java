@@ -1,6 +1,13 @@
 package edu.ithaca.barr.bank;
 import java.util.*;
 
+/**
+ * The central UI
+ * @author Liz Richards
+ * @methods main, storeInventoryID,storeInventory, itemInfo
+ * @date
+ */
+
 public abstract class GroceryStoreUI {
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -21,11 +28,11 @@ public abstract class GroceryStoreUI {
 
        System.out.println("\nEnter which interface you'd like to use.");
        System.out.println("Please enter the number associated with choice");
-       System.out.println("[1] Manager\n[2] Employee");
+       System.out.println("[1] Manager\n[2] Employee\n[3] Customer");
 
         int ans = scanner.nextInt();
 
-        while(ans != 1 && ans != 2){
+        while(ans < 1 || ans > 3){
             System.out.println("Error! Please enter valid input.");
             ans = scanner.nextInt();
         }
@@ -34,7 +41,7 @@ public abstract class GroceryStoreUI {
         switch(ans){
             case 1 -> new ManagerUI();
             case 2 -> new EmployeeUI();
-//            case 3 -> new CustomerUI();
+            case 3 -> new CustomerUI();
         }
 
     }
@@ -51,6 +58,9 @@ public abstract class GroceryStoreUI {
                 "\t" + p.getName()));
 
     }
+
+    // new method for customer only
+
 
     public void itemInfo(){
         int id;

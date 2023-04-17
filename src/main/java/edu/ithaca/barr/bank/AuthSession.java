@@ -3,6 +3,13 @@ package edu.ithaca.barr.bank;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Login/Register component for ManagerUI and EmployeeUI
+ * @author Liz Richards
+ * @methods login, register
+ * @date
+ */
+
 public class AuthSession {
     private static final Scanner scanner = new Scanner(System.in);
     private final String type;
@@ -72,6 +79,7 @@ public class AuthSession {
 
         }
         GroceryStore.getEmployees().add(e);
+        login();
 
 
     }

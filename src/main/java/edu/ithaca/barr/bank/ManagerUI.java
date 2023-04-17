@@ -4,6 +4,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * Manager UI
+ * @author Liz Richards
+ * @methods options, alertLowStock, addProduct, removeProduct, orderMoreProduct, productLowStock, productExpiration
+ * @date
+ */
+
 public class ManagerUI extends GroceryStoreUI{
     List<Integer> options = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8);
     public static Scanner scanner = new Scanner(System.in);
@@ -74,9 +81,6 @@ public class ManagerUI extends GroceryStoreUI{
         int threshold;
         System.out.print("\nPlease enter the minimum value for low stock:");
         threshold = Integer.parseInt(scanner.next());
-
-
-        threshold = Integer.parseInt(scanner.next());
         if(!(threshold >= 30 && threshold <= 180)){
             System.err.println("Error! Please enter a value between 30 and 180.");
             System.out.print("Desired threshold:");
@@ -84,8 +88,6 @@ public class ManagerUI extends GroceryStoreUI{
         }
 
         manager.alertLowStock(threshold);
-
-
     }
 
     public void addProduct(){
