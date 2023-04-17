@@ -5,6 +5,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import javax.naming.InsufficientResourcesException;
 
+/**
+ * @classname CustomerTests
+ * @author Arabella Fielder
+ * @methods AF: all
+ * @date 04/17/23
+ */
+
 public class CustomerTests {
     
     @Test

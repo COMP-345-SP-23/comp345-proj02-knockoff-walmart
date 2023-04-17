@@ -10,7 +10,7 @@ public class Customer {
  * @classname Customer
  * @author Arabella Fielder
  * @methods AF: constructor, getters, checkout(), checkout(cardPin), makePayment(), makePayment(cardPin), addToCard(product), putBackItem(product), addToTransaction()
- * @date 04/12/23
+ * @date 04/17/23
  */
 
 List<Product> cart;
