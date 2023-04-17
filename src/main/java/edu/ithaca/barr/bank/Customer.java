@@ -1,8 +1,7 @@
 package edu.ithaca.barr.bank;
 
-import java.util.ArrayList;
-
-import javax.naming.InsufficientResourcesException;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Customer {
     
@@ -14,15 +13,15 @@ public class Customer {
  * @date 04/12/23
  */
 
-ArrayList<Product> cart;
+List<Product> cart;
 String checkoutReceipt;
 int cardNum;
-int cardPin;
+String cardPin;
 double cashOnHand;
 double checkoutTotal;
 
-public Customer(int cardNumIn, int cardPinIn, double cashOnHandIn){
-    cart = new ArrayList<Product>();
+public Customer(int cardNumIn, String cardPinIn, double cashOnHandIn){
+    cart = new CopyOnWriteArrayList<Product>();
     checkoutReceipt = "";
     cardNum = cardNumIn;
     cardPin = cardPinIn;
@@ -38,8 +37,16 @@ public Customer(int cardNumIn, int cardPinIn, double cashOnHandIn){
  * @throws IllegalArgument Exception when no items to checkout with
  * must check cash balance to purchase total before each item is added
 */
-public void checkout(){
-
+public String checkout(){
+    boolean each = false;
+    for (Product product : cart){
+        each = makePayment(product.getPrice());
+        if (each){
+            addToTransaction(product);
+            cashOnHand = cashOnHand - product.getPrice();
+        }
+    }
+    return checkoutReceipt;
 }
 
 /*
@@ -50,13 +57,16 @@ public void checkout(){
  * @throws IllegalArgumentException if card pin invalid
  * must verify pin first
  */
-public void checkout(int cardPinEntered){
-    if (cardPinEntered != cardPin){
+public String checkout(String cardPinEntered){
+    if (!cardPinEntered.equals(cardPin)){
         throw new IllegalArgumentException("Invalid Pin");
     }
     else{
-
+        for (Product product : cart){
+            addToTransaction(product);
+        }
     }
+    return checkoutReceipt;
 }
 
 /*
@@ -65,8 +75,8 @@ public void checkout(int cardPinEntered){
  * @param cardPin pin to verify card use
  * @return true when valid card pin
  */
-public boolean makePayment(int cardPinEntered) throws IllegalArgumentException{
-    if (cardPinEntered != cardPin){
+public boolean makePayment(String cardPinEntered) throws IllegalArgumentException{
+    if (!cardPinEntered.equals(cardPin)){
         throw new IllegalArgumentException("Invalid Pin");
     }
     return true;
@@ -79,7 +89,6 @@ public boolean makePayment(int cardPinEntered) throws IllegalArgumentException{
  */
 public boolean makePayment(double toPay){
     if (cashOnHand - toPay >= 0){
-        cashOnHand = cashOnHand - toPay;
         return true;
     }
     return false;
@@ -114,7 +123,7 @@ public void putBackItem(String itemName){
  * @throws exception when item isnt even in the store
  */
 public void addToCart(String itemName){
-    ArrayList<Product> products = GroceryStore.getProducts();
+    List<Product> products = GroceryStore.getProducts();
     Product productToAdd = null;
     for (Product product : products){
         if (product.getName() == itemName){
@@ -146,7 +155,7 @@ public void addToTransaction(Product product){
 /*
  * @return itemsToBuy
  */
-public ArrayList<Product> getCart(){
+public List<Product> getCart(){
     return cart;
 }
 
@@ -167,7 +176,7 @@ public int getCardNum(){
 /*
  * @return cardPin
  */
-public int getCardPin(){
+public String getCardPin(){
     return cardPin;
 }
 
