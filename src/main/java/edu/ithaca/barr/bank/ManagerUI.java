@@ -188,17 +188,15 @@ public class ManagerUI extends GroceryStoreUI{
 
     }
 
-    // TODO: update Employee to include productExpirationDate
     public void productExpirationDate(){
         int id;
         System.out.println("\nDetermine if a Product is nearing their expiration date!");
         System.out.println("Here's all Products in the store");
-        storeInventory();
+        storeInventoryId();
 
         System.out.print("Enter Product id:");
         id = Integer.parseInt(scanner.next());
         System.out.println(manager.alertProductExpiration(id));
-
 
     }
 

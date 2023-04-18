@@ -13,19 +13,22 @@ import java.util.Scanner;
 public class EmployeeUI extends GroceryStoreUI{
     List<Integer> options = List.of(0, 1, 2, 3, 4);
     private static final Scanner scanner = new Scanner(System.in);
-    private static final Employee employee = new Employee(1, "employee");
+    private static Employee employee;
 
 
     public EmployeeUI(){
+        employee = new Employee(1, "employee");
         GroceryStore.getEmployees().add(employee);
 
         System.out.println("Employee interface");
         System.out.println("Temporary Employee available.\nId: 1\tUsername: employee");
-
-
         new AuthSession("employee");
 
+        employee.alertProductExpiration();
+
         options();
+
+
 
         //alert product expiration
 
@@ -54,7 +57,7 @@ public class EmployeeUI extends GroceryStoreUI{
         switch(opt) {
             case 1 -> findProduct();
             case 2 -> {
-//                productExpirationDate();
+                productExpirationDate();
                 options();
             }
             case 3 -> {
@@ -87,6 +90,18 @@ public class EmployeeUI extends GroceryStoreUI{
 
         options();
 
+
+    }
+
+    public void productExpirationDate(){
+        int id;
+        System.out.println("\nDetermine if a Product is nearing their expiration date!");
+        System.out.println("Here's all Products in the store");
+        storeInventoryId();
+
+        System.out.print("Enter Product id:");
+        id = Integer.parseInt(scanner.next());
+        System.out.println(employee.alertProductExpiration(id));
 
     }
 
