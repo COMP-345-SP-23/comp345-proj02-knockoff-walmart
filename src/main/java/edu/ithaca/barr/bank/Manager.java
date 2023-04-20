@@ -92,7 +92,7 @@ public class Manager extends Employee{
     /**
      * allows manager to order more of a particular product
      * @param id of product to order more of
-     * @param amountToAdd adding this particular amount to the products inventoryr
+     * @param amountToAdd adding this particular amount to the products inventory
      * @post that product's inventory count will be increased
      * @return string either saying you made the order or that that product isnt in the system
      * @throws NoSuchElementException
