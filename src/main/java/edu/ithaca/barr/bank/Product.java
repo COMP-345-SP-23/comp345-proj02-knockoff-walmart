@@ -86,4 +86,8 @@ public class Product {
     public void setPrice(double priceIn){
         price = priceIn;
     }
+
+    public static Object getLocationBySku(int i, Product[] allProducts) {
+        return null;
+    }
 }
