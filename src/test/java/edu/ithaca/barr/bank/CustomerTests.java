@@ -3,8 +3,6 @@ package edu.ithaca.barr.bank;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import javax.naming.InsufficientResourcesException;
-
 /**
  * @classname CustomerTests
  * @author Arabella Fielder

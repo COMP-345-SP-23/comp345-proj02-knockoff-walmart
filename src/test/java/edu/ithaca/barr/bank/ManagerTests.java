@@ -31,7 +31,7 @@ public class ManagerTests {
         //throws illegal argument exception if id is already in list
         assertThrows(IllegalArgumentException.class, ()-> m.addProduct(p2));
 
-        Product p3 = new Product("product", "12", "03/31/2023", 10.00, 1);
+        //Product p3 = new Product("product", "12", "03/31/2023", 10.00, 1);
 
         //throws illegal argument exception if name is already in list
         assertThrows(IllegalArgumentException.class, ()-> m.addProduct(p2));
