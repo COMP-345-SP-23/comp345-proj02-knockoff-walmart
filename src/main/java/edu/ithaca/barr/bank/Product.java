@@ -19,7 +19,6 @@ public class Product {
     private String date;
     private double price;
     private int id;
-    private static Product[] allProducts;
 
     public Product(String nameIn, String locationIn, String dateIn, double priceIn, int idIn){
         name = nameIn;
@@ -102,12 +101,12 @@ public class Product {
      * @return the location of the product with the given SKU number
      * @throws IllegalArgumentException if no product with the given SKU number is found
      */
-    public static int getLocationBySku(int sku) throws IllegalArgumentException {
+    public static String getLocationBySku(int sku) throws IllegalArgumentException {
         ArrayList<Product> products = GroceryStore.getProducts();
-        // Code to retrieve product information by ID
+        
         for (Product product : products){
-            if (product.getId() == productId){
-                return product; // Return the product if found
+            if (product.getId() == sku){
+                return product.getLocation(); // Return the product if found
             }
         }
         // If no product with the given SKU number is found, throw an exception
