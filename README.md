@@ -16,9 +16,19 @@ https://trello.com/invite/b/Z4AZkjLr/ATTI29f276b6f63da2d5de27021ec4159ac4157DDD9
 
 Sprint 1:
 Scrum Master: Matt
+
 Goal: Manager needs to be completely done first because "it is the most important person at the grocery store because they can order more inventory, not the employees."
 Class Diagram for Sprint 1:
 
-Link to Sprint Review
+Link to Sprint 1 Review
 https://docs.google.com/document/d/1lRVuslyR1rqVjNHhPbQODkp8faoJwKZVt9pbBlBDWCc/edit
 
+Sprint 1 Retrospective:
+https://docs.google.com/document/d/1c7rna4y-GRZE_lUWRwxaJnrtk0k_9hL3o1mP-I6n2jM/edit
+
+Sprint 2:
+
+Same link that does to copy of Class Diagram:
+https://drive.google.com/file/d/1bWezdqvPzxp9l_bMWEql8H-LjvOxI9HS/view?usp=sharing
+
+Sprint 2 Goal: I'm thinking the sprint goal create employee functionality and allow customers to shop.

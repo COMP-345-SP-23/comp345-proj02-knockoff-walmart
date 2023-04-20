@@ -4,17 +4,24 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * @classname Product
+ * @author Arabella Fielder
+ * @methods AF: increaseInventory, decreaseInventory - MW: getDateAsLocalDate
+ * @date 04/03/23
+ */
+
 public class Product {
     
     private String name;
     private int inventoryTotal = 10;
-    private int location;
+    private String location;
     private String date;
     private double price;
     private int id;
     private static Product[] allProducts;
 
-    public Product(String nameIn, int locationIn, String dateIn, double priceIn, int idIn){
+    public Product(String nameIn, String locationIn, String dateIn, double priceIn, int idIn){
         name = nameIn;
         location = locationIn;
         date = dateIn;
@@ -55,7 +62,7 @@ public class Product {
     /*
      * @return location of product (by aisle)
      */
-    public int getLocation(){
+    public String getLocation(){
         return location;
     }
 

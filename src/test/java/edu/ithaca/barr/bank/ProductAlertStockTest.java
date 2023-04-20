@@ -17,44 +17,44 @@ public class ProductAlertStockTest {
     @Test
     public void alertLowStockOneTest() throws NoSuchElementException{
         Manager manager = new Manager(1234, "John");
-        Product product1 = new Product("Lettuce", 1, "04/05/2023", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245);
         GroceryStore.getProducts().add(product1);
         assertEquals(10, product1.getInventory()); //ensuring starting inventory is correct
-        assertEquals("Product is not running low on stock: 10 remaining", manager.alertLowStock(3245)); //tests for when inventory isnt running low
+        assertEquals("Product 3245 is not running low on stock: 10 remaining", manager.alertLowStock(3245, 5)); //tests for when inventory isnt running low
         product1.decreaseInventory(6);
         assertEquals(4, product1.getInventory()); //ensures lesser product inventory
-        assertEquals("Product Inventory Running Low: 4 remaining", manager.alertLowStock(3245));//tests to check alert sent out that inventory is low for greatest amount possible
+        assertEquals("Product 3245 in aisle 1: Inventory Running Low: 4 remaining", manager.alertLowStock(3245, 5));//tests to check alert sent out that inventory is low for greatest amount possible
 
-        Product product2 = new Product("Carrots", 1, "04/05/23", 2.49, 3246);
+        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246);
         GroceryStore.getProducts().add(product2);
         assertEquals(10, product2.getInventory()); //ensuring starting inventory is correct
         product2.decreaseInventory(10);
         assertEquals(0, product2.getInventory()); //ensures lesser product inventory
-        assertEquals("Product Inventory Running Low: 0 remaining", manager.alertLowStock(3246));//tests to check alert sent out that inventory is low for lowest possible amount
+        assertEquals("Product 3246 in aisle 1: Inventory Running Low: 0 remaining", manager.alertLowStock(3246, 5));//tests to check alert sent out that inventory is low for lowest possible amount
 
-        assertThrows(Exception.class, () -> manager.alertLowStock(1234));//tests with product that doesnt exist
+        assertThrows(Exception.class, () -> manager.alertLowStock(1234, 5));//tests with product that doesnt exist
     }
 
     @Test
     public void alertLowStockAllTest(){
         Manager manager = new Manager(1234, "John");
-        Product product1 = new Product("Lettuce", 1, "4/5/23", .79, 3245);
-        Product product2 = new Product("Carrots", 1, "4/5/23", 2.49, 3246);
-        Product product3 = new Product("Bread", 2, "4/16/23", 3.49, 1243);
+        Product product1 = new Product("Lettuce", "1A", "4/5/23", .79, 3245);
+        Product product2 = new Product("Carrots", "1", "4/5/23", 2.49, 3246);
+        Product product3 = new Product("Bread", "2", "4/16/23", 3.49, 1243);
         GroceryStore.getProducts().add(product1);
         GroceryStore.getProducts().add(product2);
         GroceryStore.getProducts().add(product3);
 
-        assertEquals("No products are running low on stock", manager.alertLowStock());//tests for when in a list of many none are running low on stock
+        assertEquals("No products are running low on stock", manager.alertLowStock(5));//tests for when in a list of many none are running low on stock
 
         product1.decreaseInventory(7);
-        assertEquals(", Lettuce (3245): 3 remaining", manager.alertLowStock());//tests when one of multiple products are running low
+        assertEquals(", Lettuce (3245) in aisle 1A: 3 remaining", manager.alertLowStock(5));//tests when one of multiple products are running low
 
         product2.decreaseInventory(10);
-        assertEquals(", Lettuce (3245): 3 remaining, Carrots (3246): 0 remaining", manager.alertLowStock()); //tests when multiple of multiple products are running low
+        assertEquals(", Lettuce (3245) in aisle 1A: 3 remaining, Carrots (3246) in aisle 1: 0 remaining", manager.alertLowStock(5)); //tests when multiple of multiple products are running low
 
         product3.decreaseInventory(8);
-        assertEquals(", Lettuce (3245): 3 remaining, Carrots (3246): 0 remaining, Bread (1243): 2 remaining", manager.alertLowStock()); //tests when all of multiple products are running low
+        assertEquals(", Lettuce (3245) in aisle 1A: 3 remaining, Carrots (3246) in aisle 1: 0 remaining, Bread (1243) in aisle 2: 2 remaining", manager.alertLowStock(5)); //tests when all of multiple products are running low
     }
 
 
@@ -62,7 +62,7 @@ public class ProductAlertStockTest {
     @Test
     public void orderMoreProductTest() throws NoSuchElementException{
         Manager manager = new Manager(1234, "John");
-        Product product1 = new Product("Lettuce", 1, "4/5/23", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "4/5/23", .79, 3245);
         GroceryStore.getProducts().add(product1);
         assertEquals(10, product1.getInventory());//checks that starting inventory is 10
         manager.orderMoreProduct(3245, 12);//actual step of ordering more of a product
@@ -73,7 +73,7 @@ public class ProductAlertStockTest {
 
     @Test
     public void incrementDecrementInventoryTest(){
-        Product product1 = new Product("Lettuce", 1, "4/5/23", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "4/5/23", .79, 3245);
         assertEquals(10, product1.getInventory());//checks that starting inventory is 10
         product1.increaseInventory(5);
         assertEquals(15, product1.getInventory());//checks when increased by 5
