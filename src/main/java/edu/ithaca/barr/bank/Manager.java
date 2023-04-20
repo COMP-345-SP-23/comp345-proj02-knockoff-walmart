@@ -1,8 +1,6 @@
 package edu.ithaca.barr.bank;
 
 import java.util.*;
-import java.time.LocalDate;
-
 
 /**
  * @classname Manager
@@ -127,8 +125,4 @@ public class Manager extends Employee{
             productToOrder.increaseInventory(amountToAdd);
         }
     }
-
-
-
-
 }
