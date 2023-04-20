@@ -2,6 +2,7 @@ package edu.ithaca.barr.bank;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Product {
     
@@ -11,6 +12,7 @@ public class Product {
     private String date;
     private double price;
     private int id;
+    private static Product[] allProducts;
 
     public Product(String nameIn, int locationIn, String dateIn, double priceIn, int idIn){
         name = nameIn;
@@ -87,7 +89,21 @@ public class Product {
         price = priceIn;
     }
 
-    public static Object getLocationBySku(int i, Product[] allProducts) {
-        return null;
+    /**
+     * Returns the location of the product with the given SKU number.
+     * @param sku the SKU number of the product to look up
+     * @return the location of the product with the given SKU number
+     * @throws IllegalArgumentException if no product with the given SKU number is found
+     */
+    public static int getLocationBySku(int sku) throws IllegalArgumentException {
+        ArrayList<Product> products = GroceryStore.getProducts();
+        // Code to retrieve product information by ID
+        for (Product product : products){
+            if (product.getId() == productId){
+                return product; // Return the product if found
+            }
+        }
+        // If no product with the given SKU number is found, throw an exception
+        throw new IllegalArgumentException("No product with SKU number " + sku + " found.");
     }
 }
