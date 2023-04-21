@@ -32,7 +32,7 @@ public class ManagerUI extends GroceryStoreUI{
 
         new AuthSession("manager");
 
-        manager.alertProductExpiration();
+//        manager.alertProductExpiration();
 
         options();
 
@@ -47,8 +47,9 @@ public class ManagerUI extends GroceryStoreUI{
                 [4] Get Product Info\s
                 [5] Stock of a Product
                 [6] Expiration Date of a Product
-                [7] List items low on stock
-                [8] View Store Inventory
+                [7] Expiration for All Products
+                [8] List items low on stock
+                [9] View Store Inventory
                 Enter 0 to end session.""");
 
         System.out.println("Please enter number associated with choice.");
@@ -68,8 +69,9 @@ public class ManagerUI extends GroceryStoreUI{
             case 4 -> itemInfo();
             case 5 -> productLowStock();
             case 6 -> productExpirationDate();
-            case 7 -> alertLowStock();
-            case 8 -> {
+            case 7 -> allProductsExpiration();
+            case 8 -> alertLowStock();
+            case 9 -> {
                 storeInventory();
                 options();
             }
@@ -188,17 +190,37 @@ public class ManagerUI extends GroceryStoreUI{
 
     }
 
+    public void allProductsExpiration(){
+        int daysOut;
+        System.out.println("Determine which products are nearing their expiration date!");
+
+        System.out.print("Enter number of days out: ");
+        daysOut = scanner.nextInt();
+
+        manager.alertProductExpirationAllProducts(daysOut);
+
+    }
+
     public void productExpirationDate(){
-        int id;
+        int id, daysOut;
         System.out.println("\nDetermine if a Product is nearing their expiration date!");
         System.out.println("Here's all Products in the store");
         storeInventoryId();
 
         System.out.print("Enter Product id:");
         id = Integer.parseInt(scanner.next());
-        System.out.println(manager.alertProductExpiration(id));
+        System.out.print("Enter number of days out: ");
+        daysOut = scanner.nextInt();
 
+        while(Employee.getProductById(id) == null){
+            System.err.println("Invalid id! Product not present in the store!\nPlease enter Product id: ");
+            id = scanner.nextInt();
+        }
+        System.out.println(manager.alertProductExpiration(id, daysOut));
     }
+
+
+
 
 
 

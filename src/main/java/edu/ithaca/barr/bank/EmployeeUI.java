@@ -24,14 +24,10 @@ public class EmployeeUI extends GroceryStoreUI{
         System.out.println("Temporary Employee available.\nId: 1\tUsername: employee");
         new AuthSession("employee");
 
-        employee.alertProductExpiration();
+//        employee.alertProductExpiration();
 
         options();
-
-
-
         //alert product expiration
-
     }
 
 
@@ -39,9 +35,9 @@ public class EmployeeUI extends GroceryStoreUI{
         System.out.println("""
                 \nEmployee Options:
                 [1] Find a Product by Id
-                [2] Get Expired Products
+                [2] Get An Expired Product
                 [3] Get Product info
-                [4] View Store Inventory
+                [4] Get Expired Products
                 Enter 0 to end session.""");
 
         System.out.println("Please enter number associated with choice.");
@@ -64,7 +60,8 @@ public class EmployeeUI extends GroceryStoreUI{
                 itemInfo();
                 options();
             }
-            case 4 -> {
+            case 4 -> allProductExpiration();
+            case 5 -> {
                 storeInventory();
                 options();
             }
@@ -92,16 +89,33 @@ public class EmployeeUI extends GroceryStoreUI{
 
 
     }
-
     public void productExpirationDate(){
-        int id;
+        int id, daysOut;
         System.out.println("\nDetermine if a Product is nearing their expiration date!");
         System.out.println("Here's all Products in the store");
         storeInventoryId();
 
         System.out.print("Enter Product id:");
         id = Integer.parseInt(scanner.next());
-        System.out.println(employee.alertProductExpiration(id));
+        System.out.print("Enter number of days out: ");
+        daysOut = scanner.nextInt();
+
+       while(Employee.getProductById(id) == null){
+           System.err.println("Invalid id! Product not present in the store!\nPlease enter Product id: ");
+           id = scanner.nextInt();
+       }
+       System.out.println(employee.alertProductExpiration(id, daysOut));
+
+    }
+
+    public void allProductExpiration(){
+        int daysOut;
+        System.out.println("Determine which products are nearing their expiration date!");
+
+        System.out.print("Enter number of days out: ");
+        daysOut = scanner.nextInt();
+
+        employee.alertProductExpirationAllProducts(daysOut);
 
     }
 

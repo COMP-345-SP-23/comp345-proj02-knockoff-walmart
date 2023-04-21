@@ -1,10 +1,7 @@
 package edu.ithaca.barr.bank;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
-//import java-text-utils;
 
 /**
  * Customer UI
@@ -12,18 +9,19 @@ import java.util.Scanner;
  * @methods
  * @date
  */
-
-
 public class CustomerUI {
     //TODO: make interactive, current for testing
-    private static final Customer customer = new Customer(123456789, "1234", 40.00);
+    private static Customer customer; //= new Customer(123456789, "1234", 40.00);
     private static final Scanner scanner = new Scanner(System.in);
 
     private static final List<Integer> options = List.of(0, 1, 2, 3, 4, 5, 6);
 
     public CustomerUI() {
         System.out.println("Welcome to the Grocery Store!\nWe have a variety of fresh products ready for you.");
+        System.out.println("");
         storeProducts();
+
+
         options();
     }
 
@@ -150,7 +148,6 @@ public class CustomerUI {
             System.out.println("Total: " + total);
 
         }
-
     }
 
     public void checkout() {
@@ -191,7 +188,6 @@ public class CustomerUI {
             //verify input here
 
             if(input == 1){
-
                 try{
                     receipt = customer.checkout();
                     System.out.println(receipt);
