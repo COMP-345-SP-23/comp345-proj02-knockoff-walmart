@@ -7,7 +7,7 @@ public class Employee {
     
 /**
  * @classname Employee
- * @author Arabella Fielder
+ * @author Arabella Fielder, Matt Weil
  * @methods AF: constructor, getters
  * @date 04/03/23
  */
@@ -87,4 +87,6 @@ public class Employee {
         }
         return null;
     }
+
+
 }

@@ -6,7 +6,10 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+/**
+ * @author  Matthew Weil
+ * @date 4/12/2023
+ */
 class ProductTest {
 
     private Product product;
@@ -71,4 +74,3 @@ class ProductTest {
         assertEquals("No product with SKU number 9999 found.", exception.getMessage());
     }
 }
-
