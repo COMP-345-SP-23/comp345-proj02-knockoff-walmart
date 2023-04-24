@@ -16,7 +16,7 @@ class ProductEmployeeTest {
 
     @BeforeEach
     void setUp() {
-        product = new Product("Apple", "1", "01/01/2022", 0.99, 123);
+        product = new Product("Apple", "1", "01/01/2022", 0.99, 123, false);
     }
 
     @Test
@@ -53,10 +53,10 @@ class ProductEmployeeTest {
     @Test
     void testGetLocationBySku() {
         // Create some sample products
-        Product p1 = new Product("Product 1", "1b", "01/01/2023", 10.0, 1001);
-        Product p2 = new Product("Product 2", "2a", "01/01/2023", 20.0, 1002);
-        Product p3 = new Product("Product 3", "3a", "01/01/2023", 30.0, 1003);
-        Product p4 = new Product("Product 4", "4b", "01/01/2023", 40.0, 1004);
+        Product p1 = new Product("Product 1", "1b", "01/01/2023", 10.0, 1001, false);
+        Product p2 = new Product("Product 2", "2a", "01/01/2023", 20.0, 1002, false);
+        Product p3 = new Product("Product 3", "3a", "01/01/2023", 30.0, 1003, false);
+        Product p4 = new Product("Product 4", "4b", "01/01/2023", 40.0, 1004, false);
         GroceryStore.getProducts().add(p1);
         GroceryStore.getProducts().add(p2);
         GroceryStore.getProducts().add(p3);
@@ -77,7 +77,7 @@ class ProductEmployeeTest {
     @Test
     public void testGetInventoryInfo() {
         Employee e = new Employee(0, "Emma" );
-        Product p1 = new Product("Banana", "1b", "01/01/2023", 1.69, 1001);
+        Product p1 = new Product("Banana", "1b", "01/01/2023", 1.69, 1001, false);
         GroceryStore.getProducts().add(p1);
         String expected = "Product: Banana - Location: 1b - Stock: 10 - Price: $1.69 - Expiration date: 2023-01-01 - ID: 1001";
         String actual = e.getProductInfo(1001);
@@ -87,10 +87,10 @@ class ProductEmployeeTest {
     @Test
     public void testGetInventoryInfoWithMultipleProducts(){
         Employee e = new Employee(0, "Emma" );
-        Product p1 = new Product("Banana", "1b", "01/01/2023", 1.69, 1001);
-        Product p2 = new Product("Orange", "2a", "02/02/2023", 2.50, 1002);
-        Product p3 = new Product("Cucumber", "3a", "03/03/2023", 2.12, 1003);
-        Product p4 = new Product("Apple", "4b", "04/04/2023", 4.01, 1004);
+        Product p1 = new Product("Banana", "1b", "01/01/2023", 1.69, 1001, false);
+        Product p2 = new Product("Orange", "2a", "02/02/2023", 2.50, 1002, false);
+        Product p3 = new Product("Cucumber", "3a", "03/03/2023", 2.12, 1003, false);
+        Product p4 = new Product("Apple", "4b", "04/04/2023", 4.01, 1004, false);
 
         GroceryStore.getProducts().add(p1);
         GroceryStore.getProducts().add(p2);
