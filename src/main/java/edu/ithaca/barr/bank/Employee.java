@@ -89,9 +89,16 @@ public class Employee {
     }
 
     //Get Product information and inventory
-    public String getProductInfo(int productId){
-        return "hi";
+    public String getProductInfo(int productId) {
+        for (Product p : GroceryStore.getProducts()) {
+            if (p.getId() == productId) {
+                return String.format("Product: %s - Location: %s - Stock: %d - Price: $%.2f - Expiration date: %s - ID: %d",
+                    p.getName(), p.getLocation(), p.getInventory(), p.getPrice(), p.getDateAsLocalDate(), p.getId());
+            }
+        }
+        return "This product does not exist in this store.";
     }
+    
 
 
 }
