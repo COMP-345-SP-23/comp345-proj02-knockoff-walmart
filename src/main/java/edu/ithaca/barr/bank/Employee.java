@@ -88,5 +88,10 @@ public class Employee {
         return null;
     }
 
+    //Get Product information and inventory
+    public String getProductInfo(int productId){
+        return "hi";
+    }
+
 
 }
