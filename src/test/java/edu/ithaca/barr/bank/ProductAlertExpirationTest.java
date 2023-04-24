@@ -58,7 +58,7 @@ public class ProductAlertExpirationTest {
         GroceryStore.getProducts().add(product2);
         GroceryStore.getProducts().add(product3);
         Manager manager = new Manager(1234, "John");
-        manager.alertProductExpiration();
+        manager.alertProductExpirationAllProducts(7);
     }
 
     /**
@@ -70,7 +70,7 @@ public class ProductAlertExpirationTest {
         GroceryStore.getProducts().add(product1);
         Manager manager = new Manager(1234, "John");
         
-        String alertMessage = manager.alertProductExpiration(3245);
+        String alertMessage = manager.alertProductExpiration(3245, 7);
         assertTrue(alertMessage.equals("No products near expiration date"));
     }
 
@@ -83,7 +83,7 @@ public class ProductAlertExpirationTest {
         GroceryStore.getProducts().add(product1);
         Manager manager = new Manager(1234, "John");
 
-        String alertMessage = manager.alertProductExpiration(3245);
+        String alertMessage = manager.alertProductExpiration(3245, 7);
         assertTrue(alertMessage.equals("Product " + product1.getName() + " is almost expired!"));
     }
 }

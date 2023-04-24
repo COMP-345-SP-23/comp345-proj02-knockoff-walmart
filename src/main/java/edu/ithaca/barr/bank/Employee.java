@@ -40,7 +40,7 @@ public class Employee {
      * Alert if a product with the given ID is almost expired
      * @param productId The ID of the product to check
      */
-    public String alertProductExpiration(int productId) {
+    public String alertProductExpiration(int productId, int daysOut) {
         // Retrieve product information by ID
         Product product = getProductById(productId);
         if (product == null) {
@@ -50,8 +50,8 @@ public class Employee {
         // Check if the product is almost expired
         LocalDate expirationDate = product.getDateAsLocalDate();
         LocalDate today = LocalDate.now();
-        LocalDate sevenDaysFromNow = today.plusDays(7);
-        if (expirationDate.isBefore(sevenDaysFromNow) || expirationDate.isEqual(sevenDaysFromNow)) {
+        LocalDate daysFromNow = today.plusDays(daysOut);
+        if (expirationDate.isBefore(daysFromNow) || expirationDate.isEqual(daysFromNow)) {
             return "Product " + product.getName() + " is almost expired!";
         }else{
             return "No products near expiration date";
@@ -61,16 +61,16 @@ public class Employee {
     /**
      * Alert if any products are almost expired
      */
-    public void alertProductExpiration() {
+    public void alertProductExpirationAllProducts(int daysOut) {
         // Retrieve all products (assuming you have a database or API)
         ArrayList<Product> allProducts = GroceryStore.getProducts();
 
         // Check each product and send an alert if it's almost expired
         LocalDate today = LocalDate.now();
-        LocalDate sevenDaysFromNow = today.plusDays(7);
+        LocalDate daysFromNow = today.plusDays(daysOut);
         for (Product product : allProducts) {
             LocalDate expirationDate = product.getDateAsLocalDate();
-            if (expirationDate.isBefore(sevenDaysFromNow) || expirationDate.isEqual(sevenDaysFromNow)) {
+            if (expirationDate.isBefore(daysFromNow) || expirationDate.isEqual(daysFromNow)) {
                 System.out.println("Product " + product.getName() + " is almost expired!");
             }
         }

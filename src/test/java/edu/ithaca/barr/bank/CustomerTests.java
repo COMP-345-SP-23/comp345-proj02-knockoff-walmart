@@ -3,7 +3,6 @@ package edu.ithaca.barr.bank;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 /**
  * @classname CustomerTests
  * @author Arabella Fielder
