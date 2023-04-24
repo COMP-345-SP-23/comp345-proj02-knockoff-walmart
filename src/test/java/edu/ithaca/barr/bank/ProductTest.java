@@ -13,7 +13,7 @@ class ProductTest {
 
     @BeforeEach
     void setUp() {
-        product = new Product("Apple", "1", "01/01/2022", 0.99, 123);
+        product = new Product("Apple", "1", "01/01/2022", 0.99, 123, false);
     }
 
     @Test
