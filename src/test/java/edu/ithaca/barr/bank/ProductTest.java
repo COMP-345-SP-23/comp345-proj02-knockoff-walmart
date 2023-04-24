@@ -13,7 +13,7 @@ class ProductTest {
 
     @BeforeEach
     void setUp() {
-        product = new Product("Apple", "1", "01/01/2022", 0.99, 123);
+        product = new Product("Apple", "1", "01/01/2022", 0.99, 123, false);
     }
 
     @Test
@@ -50,10 +50,10 @@ class ProductTest {
     @Test
     void testGetLocationBySku() {
         // Create some sample products
-        Product p1 = new Product("Product 1", "1b", "01/01/2023", 10.0, 1001);
-        Product p2 = new Product("Product 2", "2a", "01/01/2023", 20.0, 1002);
-        Product p3 = new Product("Product 3", "3a", "01/01/2023", 30.0, 1003);
-        Product p4 = new Product("Product 4", "4b", "01/01/2023", 40.0, 1004);
+        Product p1 = new Product("Product 1", "1b", "01/01/2023", 10.0, 1001, false);
+        Product p2 = new Product("Product 2", "2a", "01/01/2023", 20.0, 1002, false);
+        Product p3 = new Product("Product 3", "3a", "01/01/2023", 30.0, 1003, false);
+        Product p4 = new Product("Product 4", "4b", "01/01/2023", 40.0, 1004, false);
         GroceryStore.getProducts().add(p1);
         GroceryStore.getProducts().add(p2);
         GroceryStore.getProducts().add(p3);

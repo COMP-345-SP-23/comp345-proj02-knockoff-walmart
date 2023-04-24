@@ -19,12 +19,19 @@ public class Product {
     private String date;
     private double price;
     private int id;
+    private boolean organic;
 
-    public Product(String nameIn, String locationIn, String dateIn, double priceIn, int idIn){
+    public Product(String nameIn, String locationIn, String dateIn, double priceIn, int idIn, boolean organicIn){
         name = nameIn;
+        organic = organicIn;
         location = locationIn;
         date = dateIn;
-        price = priceIn;
+        if (organic){
+            price = priceIn * Math.exp(1);
+        }
+        else{
+            price = priceIn;
+        }
         id = idIn;
     }
 
