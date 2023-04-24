@@ -37,4 +37,32 @@ public class GroceryStore {
         return totalSales;
     }
 
+    /*
+    * @return list of all products and their id numbers
+    */
+    public static String getAllProductsString() throws Exception{
+	    String returnString = "";
+	    for (Product product : products){
+		    returnString = returnString + "\n" + product.getId() + ": " + product.getName();
+	    }
+	    if (returnString == ""){
+		    throw new Exception("No products in this store");
+	    }
+	    return returnString;
+    }
+
+    /*
+    * @return list of all products, their id number, inventory(stock) count, and expiration date
+    */
+    public static String productInventoryAll() throws Exception{
+	    String returnString = "";
+	    for (Product product : products){
+		    returnString = returnString + "\n" + product.getId() + " - " + product.getName() + ": Stock: " + product.getInventory() + ", Expiration Date: " + product.getDateAsLocalDate();
+	    }
+	    if (returnString == ""){
+		    throw new Exception("No products in this store");
+	    }
+	    return returnString;
+    }
+
 }
