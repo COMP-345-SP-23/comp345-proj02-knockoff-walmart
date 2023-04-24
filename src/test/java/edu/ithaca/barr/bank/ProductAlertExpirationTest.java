@@ -2,7 +2,6 @@ package edu.ithaca.barr.bank;
 
 /**
  * This class tests the functionality of the ProductAlertExpiration class.
- * @classname ProductAlertExpirationTest
  * @author Matthew Weil
  * @methods testGetProductById() testGetProductByIdNotFound() testAlertProductExpirationMultipleProducts() testAlertProductExpirationNotAlmostExpired() testAlertProductExpirationAlmostExpired()
  * @date 03/31/2023

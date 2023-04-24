@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * @classname Product
- * @author Arabella Fielder
+ * @author Arabella Fielder, Matt Weil
  * @methods AF: increaseInventory, decreaseInventory - MW: getDateAsLocalDate
  * @date 04/03/23
  */
