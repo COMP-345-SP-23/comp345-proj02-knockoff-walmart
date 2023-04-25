@@ -17,9 +17,15 @@ public class CustomerUI {
     private static final List<Integer> options = List.of(0, 1, 2, 3, 4, 5, 6);
 
     public CustomerUI() {
+        double cash  = 0;
         System.out.println("Welcome to the Grocery Store!\nWe have a variety of fresh products ready for you.");
         System.out.println("");
         storeProducts();
+
+        System.out.println("\nPlease enter cash on hand:");
+        cash = Double.parseDouble(scanner.next());
+
+        customer = new Customer(123456789, "1234", cash);
 
 
         options();
@@ -150,9 +156,23 @@ public class CustomerUI {
         }
     }
 
+    public String verify(){
+        String pin;
+        System.out.println("\nEnter Card Pin:");
+        pin = scanner.next();
+        while(pin.length() > 4){
+            System.err.println("Error! Please enter valid pin number:");
+            pin = scanner.next();
+
+        }
+        customer.cardPin = pin;
+        return pin;
+
+    }
+
     public void checkout() {
         String ans;
-        int res;
+        int res, res0;
         System.out.println("\nWelcome to Self-Checkout!\nHere's all the items in your cart:");
         viewCartUtil();
 
@@ -185,7 +205,10 @@ public class CustomerUI {
 
             System.out.println("How are you paying today?\n[1] Cash\n[2] Debit"); // change to specified card type for project
             input = Integer.parseInt(scanner.next());
-            //verify input here
+            while(input != 1 && input != 2){
+                System.err.println("Invalid entry! Please enter a valid response:");
+                input = Integer.parseInt(scanner.next());
+            }
 
             if(input == 1){
                 try{
@@ -195,12 +218,9 @@ public class CustomerUI {
                     System.err.println("No items in cart!");
                 }
 
-
-
             }else{
                 String pin;
-                System.out.print("Enter card pin:");
-                pin = scanner.next();
+                pin = verify();
 
                 // TODO: error test
                 while(true){
@@ -214,9 +234,20 @@ public class CustomerUI {
                     }
                 }
                 System.out.println(receipt);
-
-
             }
+            System.out.println("Would you like to return to the store?\n[1] Yes\n[2] No");
+            res0 = scanner.nextInt();
+            while(res0 > 2 || res0 < 1){
+                System.err.println("Error! Please enter a valid response:");
+                res0 = scanner.nextInt();
+            }
+
+            if(res0 == 1){
+                options();
+            }else{
+                System.out.println("Thank you for using the Grocery Store!\nHave a nice day!");
+            }
+
 
         }
 

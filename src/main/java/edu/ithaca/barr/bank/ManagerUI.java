@@ -94,6 +94,7 @@ public class ManagerUI extends GroceryStoreUI{
 
     public void addProduct(){
         String name, date, location;
+        boolean org;
         int id;
         double price;
         System.out.println("\nAdd a Brand New Product to the Grocery Store!");
@@ -109,8 +110,10 @@ public class ManagerUI extends GroceryStoreUI{
         price = Double.parseDouble(scanner.next());
         System.out.print("Enter Product Id: ");
         id = scanner.nextInt();
+        System.out.println("Is Product Organic? 'true' or 'false'?");
+        org = scanner.nextBoolean();
 
-        Product p = new Product(name, location, date, price, id);
+        Product p = new Product(name, location, date, price, id, org);
 
         while(Manager.getProductById(id) != null){
             System.err.println("Error! Product already in store.");
@@ -125,8 +128,11 @@ public class ManagerUI extends GroceryStoreUI{
             price = Double.parseDouble(scanner.next());
             System.out.print("Enter Product Id: ");
             id = scanner.nextInt();
+            System.out.println("Is Product Organic? 'true' or 'false'?");
+            org = scanner.nextBoolean();
         }
-        p = new Product(name, location, date, price, id);
+
+        p = new Product(name, location, date, price, id, org);
 
         manager.addProduct(p);
         System.out.println("Added " + name + " to the store!");
