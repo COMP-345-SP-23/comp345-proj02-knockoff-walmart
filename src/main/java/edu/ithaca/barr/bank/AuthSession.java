@@ -79,6 +79,7 @@ public class AuthSession {
 
         }
         GroceryStore.getEmployees().add(e);
+        System.out.println("\nPlease login with your registered information:\n");
         login();
 
 

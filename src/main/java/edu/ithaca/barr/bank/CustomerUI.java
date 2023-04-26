@@ -118,7 +118,6 @@ public class CustomerUI {
 
     }
 
-
     // add options back or make it better
     public void viewCart(){
         double total = 0;

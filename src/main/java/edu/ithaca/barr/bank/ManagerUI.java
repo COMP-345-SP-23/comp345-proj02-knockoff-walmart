@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 
 public class ManagerUI extends GroceryStoreUI{
-    List<Integer> options = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8);
+    List<Integer> options = List.of(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
     public static Scanner scanner = new Scanner(System.in);
     private static  Manager manager;
 
