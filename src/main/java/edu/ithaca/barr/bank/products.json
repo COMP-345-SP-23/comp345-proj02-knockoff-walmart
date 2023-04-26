@@ -64,19 +64,11 @@
     "organic": false
   },
   {
-    "name": "ice cream",
-    "location": "A30",
-    "date": "05/31/2030",
-    "price": 2.50,
-    "id": 8,
-    "organic": false
-  },
-  {
     "name": "pizza",
     "location": "A30",
     "date": "05/24/2030",
     "price": 4.99,
-    "id": 9,
+    "id": 8,
     "organic": false
   },
   {
@@ -84,7 +76,7 @@
     "location": "A29",
     "date": "05/31/2030",
     "price": 4.99,
-    "id": 10,
+    "id": 9,
     "organic": true
   }
 ]

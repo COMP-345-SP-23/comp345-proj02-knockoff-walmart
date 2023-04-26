@@ -23,7 +23,6 @@ public abstract class GroceryStoreUI {
 //       GroceryStore.getProducts().add(new Product("Blueberries", "A12", "04/05/2023", 2.99, 4, true));
 //       GroceryStore.getProducts().add(new Product("Macbook", "A24", "04/05/2028", 1499.99, 5, false));
 
-       // should we use temporary users?
         // temporary logins
 
         Scanner scanner = new Scanner(System.in);
@@ -41,7 +40,6 @@ public abstract class GroceryStoreUI {
             ans = scanner.nextInt();
         }
 
-        // TODO finish these up
         switch(ans){
             case 1 -> new ManagerUI();
             case 2 -> new EmployeeUI();

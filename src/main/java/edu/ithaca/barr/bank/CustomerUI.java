@@ -10,10 +10,8 @@ import java.util.Scanner;
  * @date
  */
 public class CustomerUI {
-    //TODO: make interactive, current for testing
-    private static Customer customer; //= new Customer(123456789, "1234", 40.00);
+    private static Customer customer;
     private static final Scanner scanner = new Scanner(System.in);
-
     private static final List<Integer> options = List.of(0, 1, 2, 3, 4, 5, 6);
 
     public CustomerUI() {
@@ -26,7 +24,6 @@ public class CustomerUI {
         cash = Double.parseDouble(scanner.next());
 
         customer = new Customer(123456789, "1234", cash);
-
 
         options();
     }
@@ -65,8 +62,8 @@ public class CustomerUI {
 
     // TODO: make prettier
     public void storeProducts() {
-        System.out.println("Product Name\t\tPrice\tLocation");
-        GroceryStore.getProducts().forEach(p -> System.out.println(p.getName() + "\t" + p.getPrice() + "\t" +  p.getLocation()));
+        System.out.println("Product\t\tPrice\tLocation");
+        GroceryStore.getProducts().forEach(p -> System.out.println(p.getName() + "\t\t" + p.getPrice() + "\t" +  p.getLocation()));
 
     }
     public void addToCart() {
@@ -77,16 +74,15 @@ public class CustomerUI {
 
         System.out.print("Enter product name to add to cart:");
         product = scanner.next();
-//        customer.addToCart(product);
+
         while(!product.equalsIgnoreCase("quit")){
             try{
                 customer.addToCart(product);
                 System.out.print("Enter product name to add to cart:");
-                product = scanner.next();
+                product = scanner.nextLine();
             }catch(Exception e){
                 System.err.println("Product is not in this store!\nPlease enter a valid product:");
-                product = scanner.next();
-
+                product = scanner.nextLine();
             }
 
         }
@@ -105,10 +101,10 @@ public class CustomerUI {
             try{
                 customer.putBackItem(item);
                 System.out.print("Enter item to remove:");
-                item = scanner.next();
+                item = scanner.nextLine();
             }catch(Exception e){
                 System.err.println("Item not in cart!\nPlease enter a valid item:");
-                item = scanner.next();
+                item = scanner.nextLine();
 
             }
 
@@ -168,7 +164,6 @@ public class CustomerUI {
         return pin;
 
     }
-
     public void checkout() {
         String ans;
         int res, res0;
@@ -221,7 +216,6 @@ public class CustomerUI {
                 String pin;
                 pin = verify();
 
-                // TODO: error test
                 while(true){
                     try{
                         receipt = customer.checkout(pin);
@@ -232,7 +226,9 @@ public class CustomerUI {
 
                     }
                 }
+                System.out.println("Here's your receipt:");
                 System.out.println(receipt);
+                System.out.println("-----------------------------------------");
             }
             System.out.println("Would you like to return to the store?\n[1] Yes\n[2] No");
             res0 = scanner.nextInt();

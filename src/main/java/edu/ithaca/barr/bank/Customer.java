@@ -1,6 +1,7 @@
 package edu.ithaca.barr.bank;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Customer {
@@ -103,7 +104,7 @@ public boolean makePayment(double toPay){
 public void putBackItem(String itemName){
     Product productToRemove = null;
     for (Product product : cart){
-        if (product.getName() == itemName){
+        if (product.getName().equalsIgnoreCase(itemName)){
             productToRemove = product;
             break;
         }
@@ -126,7 +127,7 @@ public void addToCart(String itemName){
     List<Product> products = GroceryStore.getProducts();
     Product productToAdd = null;
     for (Product product : products){
-        if (product.getName() == itemName){
+        if (product.getName().equalsIgnoreCase(itemName)){
             productToAdd = product;
             break;
         }
