@@ -27,7 +27,7 @@
     "name": "strawberries",
     "location": "A12",
     "date": "05/10/2023",
-    "price": 2.00,
+    "price": 2.01,
     "id": 3,
     "organic": true
   },
@@ -59,7 +59,7 @@
     "name": "milk",
     "location": "A30",
     "date": "05/07/2030",
-    "price": 3.50,
+    "price": 3.55,
     "id": 7,
     "organic": false
   },

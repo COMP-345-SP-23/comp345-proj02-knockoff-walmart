@@ -55,13 +55,12 @@ public abstract class GroceryStoreUI {
     }
 
     public void storeInventory(){
-        System.out.println("Id\tQty\tProduct\tLocation");
+        System.out.println("Id\tQty\tLocation\tProduct");
         GroceryStore.getProducts().forEach(p ->  System.out.println(p.getId() + "\t" + p.getInventory() +
-                "\t" + p.getName() + "\t\t" + p.getLocation()));
+                "\t" +  p.getLocation() + "\t" + p.getName()));
 
     }
 
-    // new method for customer only
 
 
     public void itemInfo(){

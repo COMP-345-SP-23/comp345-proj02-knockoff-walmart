@@ -60,10 +60,9 @@ public class CustomerUI {
     }
 
 
-    // TODO: make prettier
     public void storeProducts() {
-        System.out.println("Product\t\tPrice\tLocation");
-        GroceryStore.getProducts().forEach(p -> System.out.println(p.getName() + "\t\t" + p.getPrice() + "\t" +  p.getLocation()));
+        System.out.println("Location\tPrice\tProduct");
+        GroceryStore.getProducts().forEach(p ->System.out.println("\t" + p.getLocation() + "\t\t" + p.getPrice() + "\t" +  p.getName()));
 
     }
     public void addToCart() {
@@ -79,10 +78,10 @@ public class CustomerUI {
             try{
                 customer.addToCart(product);
                 System.out.print("Enter product name to add to cart:");
-                product = scanner.nextLine();
+                product = scanner.next();
             }catch(Exception e){
                 System.err.println("Product is not in this store!\nPlease enter a valid product:");
-                product = scanner.nextLine();
+                product = scanner.next();
             }
 
         }
@@ -161,6 +160,7 @@ public class CustomerUI {
 
         }
         customer.cardPin = pin;
+        System.out.println("Transaction Complete!");
         return pin;
 
     }
@@ -207,7 +207,9 @@ public class CustomerUI {
             if(input == 1){
                 try{
                     receipt = customer.checkout();
+                    System.out.println("Here's your receipt:");
                     System.out.println(receipt);
+                    System.out.println("-----------------------------------------");
                 }catch(Exception e){
                     System.err.println("No items in cart!");
                 }
