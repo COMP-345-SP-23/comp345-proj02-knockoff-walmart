@@ -13,11 +13,12 @@ public abstract class GroceryStoreUI {
     private static final Scanner scanner = new Scanner(System.in);
     // Login after
    public static void main(String[] args){
-       GroceryStore.getProducts().add(new Product("Apples", "A12", "04/05/2023", 1.14, 0));
-       GroceryStore.getProducts().add(new Product("Bananas", "A12", "04/05/2023", .66, 1));
-       GroceryStore.getProducts().add(new Product("Oranges", "A12", "04/05/2023", 1.00, 2));
-       GroceryStore.getProducts().add(new Product("Grapes", "A12", "04/05/2023", 1.24, 3));
-       GroceryStore.getProducts().add(new Product("Blueberries", "A12", "04/05/2023", 2.99, 4));
+       GroceryStore.getProducts().add(new Product("Apples", "A12", "04/05/2023", 1.14, 0, true));
+       GroceryStore.getProducts().add(new Product("Bananas", "A12", "04/05/2023", .66, 1, true));
+       GroceryStore.getProducts().add(new Product("Oranges", "A12", "04/05/2023", 1.00, 2, true));
+       GroceryStore.getProducts().add(new Product("Grapes", "A12", "04/05/2023", 1.24, 3, true));
+       GroceryStore.getProducts().add(new Product("Blueberries", "A12", "04/05/2023", 2.99, 4, true));
+       GroceryStore.getProducts().add(new Product("Macbook", "A24", "04/05/2028", 1499.99, 5, false));
 
        // should we use temporary users?
         // temporary logins
