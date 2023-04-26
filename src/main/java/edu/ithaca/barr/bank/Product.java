@@ -1,5 +1,8 @@
 package edu.ithaca.barr.bank;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,10 +19,18 @@ public class Product {
     private String name;
     private int inventoryTotal = 10;
     private String location;
+    @JsonProperty(required = true)
     private String date;
     private double price;
     private int id;
+    @JsonProperty(required = true)
     private boolean organic;
+
+
+    public Product(){
+        super();
+    }
+
 
     public Product(String nameIn, String locationIn, String dateIn, double priceIn, int idIn, boolean organicIn){
         name = nameIn;

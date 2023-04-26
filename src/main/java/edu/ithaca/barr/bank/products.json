@@ -1,0 +1,94 @@
+[
+  {
+    "name": "apples",
+    "location": "A12",
+    "date": "05/07/2023",
+    "price": 0.99,
+    "id": 0,
+    "organic": true
+  },
+  {
+    "name": "oranges",
+    "location": "A12",
+    "date": "05/14/2023",
+    "price": 1.25,
+    "id": 1,
+    "organic": true
+  },
+  {
+    "name": "bananas",
+    "location": "A12",
+    "date": "05/01/2023",
+    "price": 0.66,
+    "id": 2,
+    "organic": true
+  },
+  {
+    "name": "strawberries",
+    "location": "A12",
+    "date": "05/10/2023",
+    "price": 2.00,
+    "id": 3,
+    "organic": true
+  },
+  {
+    "name": "grapes",
+    "location": "A12",
+    "date": "05/04/2023",
+    "price": 1.99,
+    "id": 4,
+    "organic": true
+  },
+  {
+    "name": "blueberries",
+    "location": "A12",
+    "date": "05/13/2023",
+    "price": 0.66,
+    "id": 5,
+    "organic": true
+  },
+  {
+  "name": "macbook",
+  "location": "A24",
+  "date": "05/13/2030",
+  "price": 1499.99,
+  "id": 6,
+  "organic": false
+},
+  {
+    "name": "milk",
+    "location": "A30",
+    "date": "05/07/2030",
+    "price": 3.50,
+    "id": 7,
+    "organic": false
+  },
+  {
+    "name": "ice cream",
+    "location": "A30",
+    "date": "05/31/2030",
+    "price": 2.50,
+    "id": 8,
+    "organic": false
+  },
+  {
+    "name": "pizza",
+    "location": "A30",
+    "date": "05/24/2030",
+    "price": 4.99,
+    "id": 9,
+    "organic": false
+  },
+  {
+    "name": "eggs",
+    "location": "A29",
+    "date": "05/31/2030",
+    "price": 4.99,
+    "id": 10,
+    "organic": true
+  }
+]
+
+
+
+
