@@ -14,9 +14,9 @@ public class CustomerTests {
     
     @Test
     public void addToCartTest() throws IllegalArgumentException{
-        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245, false);
         GroceryStore.getProducts().add(product1);
-        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246);
+        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246, false);
         GroceryStore.getProducts().add(product2);
 
         Customer customer1 = new Customer(12345678, "4321", 20.00);
@@ -31,9 +31,9 @@ public class CustomerTests {
 
     @Test
     public void putBackItemTest() throws IllegalArgumentException{
-        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245, false);
         GroceryStore.getProducts().add(product1);
-        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246);
+        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246, false);
         GroceryStore.getProducts().add(product2);
         Customer customer1 = new Customer(12345678, "4321", 20.00);
         customer1.addToCart("Lettuce");
@@ -51,9 +51,9 @@ public class CustomerTests {
 
     @Test
     public void addToTransactionTest(){
-        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245, false);
         GroceryStore.getProducts().add(product1);
-        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246);
+        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246, false);
         GroceryStore.getProducts().add(product2);
         Customer customer1 = new Customer(12345678, "4321", 20.00);
         customer1.addToCart("Lettuce");
@@ -75,9 +75,9 @@ public class CustomerTests {
 
     @Test
     public void makePaymentWCardTest(){
-        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245, false);
         GroceryStore.getProducts().add(product1);
-        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246);
+        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246, false);
         GroceryStore.getProducts().add(product2);
         Customer customer1 = new Customer(12345678, "4321", 20.00);
         customer1.addToCart("Lettuce");
@@ -105,9 +105,9 @@ public class CustomerTests {
 
     @Test
     public void makePaymentWCash() {
-        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245, false);
         GroceryStore.getProducts().add(product1);
-        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246);
+        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246, false);
         GroceryStore.getProducts().add(product2);
         Customer customer1 = new Customer(12345678, "4321", 20.00);
         customer1.addToCart("Lettuce");
@@ -127,9 +127,9 @@ public class CustomerTests {
 
     @Test
     public void checkoutWCashTest(){
-        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245, false);
         GroceryStore.getProducts().add(product1);
-        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246);
+        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246, false);
         GroceryStore.getProducts().add(product2);
         Customer customer1 = new Customer(12345678, "4321", 20.00);
         customer1.addToCart("Lettuce");
@@ -143,7 +143,7 @@ public class CustomerTests {
         assertEquals(9, product1.getInventory());
         assertEquals(8, product2.getInventory());
         
-        Product product3 = new Product("Steak", "4B", "05/11/2023", 8.00, 8765);
+        Product product3 = new Product("Steak", "4B", "05/11/2023", 8.00, 8765, false);
         GroceryStore.getProducts().add(product3);
         Customer customer2 = new Customer(12345678, "4321", 20.00);
         customer2.addToCart("Lettuce");
@@ -169,11 +169,11 @@ public class CustomerTests {
     public void checkoutWCardTest(){
 
         //test with valid pin number
-        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245);
+        Product product1 = new Product("Lettuce", "1", "04/05/2023", .79, 3245, false);
         GroceryStore.getProducts().add(product1);
-        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246);
+        Product product2 = new Product("Carrots", "1", "04/05/23", 2.49, 3246, false);
         GroceryStore.getProducts().add(product2);
-        Product product3 = new Product("Steak", "4B", "05/11/2023", 8.00, 8765);
+        Product product3 = new Product("Steak", "4B", "05/11/2023", 8.00, 8765, false);
         GroceryStore.getProducts().add(product3);
         
         Customer customer2 = new Customer(12345678, "4321", 20.00);
