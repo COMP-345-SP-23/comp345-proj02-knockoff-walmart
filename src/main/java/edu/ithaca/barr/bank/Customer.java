@@ -59,6 +59,7 @@ public String checkout(){
  * must verify pin first
  */
 public String checkout(String cardPinEntered){
+    checkoutReceipt = "";
     if (!cardPinEntered.equals(cardPin)){
         throw new IllegalArgumentException("Invalid Pin");
     }

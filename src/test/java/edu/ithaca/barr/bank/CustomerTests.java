@@ -155,10 +155,10 @@ public class CustomerTests {
         customer2.addToCart("Steak");
 
         customer2.checkout();
-
+        //checks that not all items in cart are bought due to lack of money
         assertEquals(17.05, customer2.getCheckoutTotal());
         assertEquals(1, customer2.getCart().size());
-        //assertEquals(2.95, customer2.getCashOnHand());//fix this total
+        //assertEquals(2.95, customer2.getCashOnHand());
         assertEquals(7, product1.getInventory());
         assertEquals(5, product2.getInventory());
         assertEquals(9, product3.getInventory());
