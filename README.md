@@ -8,7 +8,7 @@ Arabella, Matthew, Mark, Elizabeth
 Link to Prompt:
 https://docs.google.com/document/d/1NmebprGp-OUWNcqMnFnbpYF07FemxQ2ZuSDeiil1nks/edit
 
-Link to all Diagrams:
+Link to all Diagrams: (note all sequence diagrams are on one tab but our names are with our own diagrams)
 https://drive.google.com/file/d/1bWezdqvPzxp9l_bMWEql8H-LjvOxI9HS/view?usp=sharing
 
 Link to Trello Board:
