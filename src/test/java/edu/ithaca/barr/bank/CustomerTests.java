@@ -89,7 +89,7 @@ public class CustomerTests {
         customer1.addToTransaction(product2);
 
         assertEquals(4.07, customer1.getCheckoutTotal());
-        assertTrue(customer1.makePayment(4321));
+        assertTrue(customer1.makePayment("4321"));
         assertEquals(0, customer1.getCart().size());
 
         customer1.addToCart("Lettuce");
@@ -99,7 +99,7 @@ public class CustomerTests {
         customer1.addToTransaction(product1);
         customer1.addToTransaction(product2);
 
-        assertThrows(IllegalArgumentException.class, () -> customer1.makePayment(1234));
+        assertThrows(IllegalArgumentException.class, () -> customer1.makePayment("1234"));
 
     }
 
