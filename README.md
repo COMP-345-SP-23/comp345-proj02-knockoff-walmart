@@ -3,6 +3,7 @@
 ## Project 02 - Grocery Store Management System
 
 Quick Start Guide: Clone this repository and run the main method in GroceryStoreUI.java
+Please note that many tests need to be run one at a time
 
 Names:
 Arabella, Matthew, Mark, Elizabeth
