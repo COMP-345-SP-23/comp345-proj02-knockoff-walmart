@@ -31,7 +31,7 @@ https://docs.google.com/document/d/1c7rna4y-GRZE_lUWRwxaJnrtk0k_9hL3o1mP-I6n2jM/
 
 Sprint 2:
 
-Same link that does to copy of Class Diagram:
+Same link that goes to copy of Class Diagram for second sprint(final updated documentation):
 https://drive.google.com/file/d/1bWezdqvPzxp9l_bMWEql8H-LjvOxI9HS/view?usp=sharing
 
 Sprint 2 Goal: I'm thinking the sprint goal create employee functionality and allow customers to shop.
